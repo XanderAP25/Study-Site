@@ -1,4 +1,4 @@
 - name: Home
-  link: /Study-Site
+  link: "{{ site.baseurl }}/"
 - name: About
-  link: /Study-Site/about.html
+  link: "{{ site.baseurl }}/about.html"
