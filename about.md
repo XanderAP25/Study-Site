@@ -1,12 +1,11 @@
 ---
 layout: default
 title: About
-me: 
 ---
 
 # About Me
 
-It is I, the creator of this site. 
+It is I, the creator of this website. 
 
 <img src="assets/images/IMG_4353.jpg" style="width:200px; float:right; height:600px">
 
