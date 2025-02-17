@@ -3,7 +3,9 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-title: A Study on LLMs 
+title: A Study on LLMs
+repository: XanderAP25/Study-Site
+
 
 navigation:
   - title: Home
