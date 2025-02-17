@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Home
-permalinl: /
 ---
 
 # Welcome to my site!

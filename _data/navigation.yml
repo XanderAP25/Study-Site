@@ -1,4 +1,7 @@
 - name: Home
   link: "/"
+- name: A Guide to AI
+  link: "/article.html"
 - name: About
   link: "/about.html"
+
