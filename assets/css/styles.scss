@@ -3,4 +3,35 @@
 
 @import "{{ site.theme }}";
 
+// Slate-Themed Navigation
+.site-nav {
+    //background-color: #252830; 
+    padding: 15px 20px;
+    text-align: center;
+    //border-bottom: 3px solid #2a2e38;
+}
 
+.site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.site-nav a {
+    color: white; 
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 10px
+}
+
+.site-nav a:hover {
+    color: #9da5b4; // White text on hover for contrast
+    text-decoration: underline;
+}
