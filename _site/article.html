@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en-US">
 
   <head>
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width,maximum-scale=2">
     <link rel="stylesheet" href="/assets/css/styles.css">
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Article | A Study on LLMs</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Article" />
@@ -33,8 +34,29 @@
 
 <!-- end custom head snippets -->
 
+
+    <!-- MathJax for LaTeX Rendering -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" async
+      src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+      id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
   </head>
 
+  
   <body>
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -70,11 +92,14 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        
         <h1 id="demystifiying-ai-a-guide-to-llms">Demystifiying AI: A Guide to LLMs</h1>
 
 <p>Depending on who you are, and your interests, different things likely come to mind when you hear “AI”. Maybe you think of Skynet from <em>Terminator</em>, J.A.R.V.I.S from <em>Iron Man</em>, or Cortana from <em>Halo</em>. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Grok are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be powerful tools. They can read papers for you, write stories and programs, and are now showing themselves to be capable of logically thinking through problems. Impressive? Absolutely. But not magic.</p>
 
 <p>With some time and effort, you can not only come to understand how AI works, but how to make it work for you. It is with that purpose that this guide exists, to distill the dense and scattered information that is out there on AI into a more concise and easily digestible form.</p>
+
+<p>STILL CONSIDERING HOW I’M GOING TO GIVE A “here’s what we’re doing and why we’re doing it this way” PIECE UP HERE</p>
 
 <table>
   <thead>
@@ -87,7 +112,7 @@
       <td><a href="#introduction-to-ai-and-llms">Introduction to AI and LLMs</a></td>
     </tr>
     <tr>
-      <td><a href="#how-llms-benefit-you-and-why-they-suck">How LLMs Benefit You (and why they suck)</a></td>
+      <td><a href="#how-llms-benefit-and-their-challenges">How LLMs Benefit You and Their Challenges</a></td>
     </tr>
     <tr>
       <td><a href="#training-and-fine-tuning-an-llm">Training and Fine-Tuning an LLM</a></td>
@@ -98,19 +123,55 @@
   </tbody>
 </table>
 
+<h3 id="prerequisite">Prerequisite</h3>
+
+<p>This article is intended for those unfamiliar with the inner workings of artificial intelligence, and the applications of AI that go beyond simply using the web-based solutions afforded by OpenAI and the various other AI companies. No deep math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you’re new to AI, this guide will give you a solid foundation.</p>
+
 <h2 id="introduction-to-ai-and-llms">Introduction to AI and LLMs</h2>
 
-<h2 id="how-llms-benefit-you-and-why-they-suck">How LLMs Benefit You (and why they suck)</h2>
+<p>Before we explore artifical intelligence, let’s briefly consider what intelligence itself is. Intelligence is granted to us by the supercomputer that is our brain. So, what can we do with our brains? We can analyze information, learn from experience, reason through problems, and make decisions.</p>
+
+<p>Artificial intelligence is the ability of a machine to perform tasks that require human intelligence. There are many algorithms and models that can fuel artificial intelligence. What all these algorithms have in common is that they are driven by training on a set of data to perform a certain task.</p>
+
+<p>A simple example of this is linear regression analysis, which works by feeding data into the algorithm as predictors and a target outcome. Based on the training data, the algorithm learns the relationships between the predictors and target variables, allowing it to make predictions.</p>
+
+<p><strong>big cool image illustrating linear regression</strong></p>
+
+<p>A more advanced example would be neural networks, which are inspired by the neurons in our brains. Like our neurons, these artificial neurons take data as an input, then send that data along synapses to another set of neurons until the data is eventually transmitted as an output (<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>). We skipped a lot of steps, so let’s take a moment to look at neural networks more closely.</p>
+
+<p><img src="assets/images/Neuron Visual.png" style="width:400px; height;400px;" /></p>
+
+<p><span style="font-family:Noto Sans; font-size:xx-small; ">Illustration of the traversal of input data through neurons</span></p>
+
+<p>As shown above, data is input into an initial set of neurons. From there, the data is sent along the synapses to the next set of neurons, and while it isn’t shown here, these traversals between neurons can happen hundreds of thousands of times in humans until we get an output that becomes a thought or process of the body (<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>).</p>
+
+<p>Artificial neural networks mimic the neuron-synapase-neuron structure of our brains by essentially creating artificial neurons that are capable of processing and passing information forward. These artificial neurons, or nodes, are hubs where a sigmoid function (<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>) is run on the sum of all inputs, and the result is sent forward either as an output or to another set of neurons to have the same process carried out again with the the new outputs as inputs (<sup id="fnref:1:2" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>).</p>
+
+<p>The next node that the output goes to is determined by how the neural network was trained.</p>
+
+<h2 id="how-llms-benefit-you-and-their-challenges">How LLMs Benefit You and Their Challenges</h2>
 
 <h2 id="training-and-fine-tuning-an-llm">Training and Fine-Tuning an LLM</h2>
 
 <h2 id="running-llms-on-your-own-computer">Running LLMs on Your Own Computer</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Han, Su-Hyun, et al. “Artificial Neural Network: Understanding the Basic Concepts without Mathematics.” <em>Https://Doi.Org/10.12779/Dnd.2018.17.3.83</em>, 17 Sept. 2018, doi.org/10.12779/dnd.2018.17.3.83. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a> <a href="#fnref:1:2" class="reversefootnote" role="doc-backlink">&#8617;<sup>3</sup></a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>$\sigma(x) = \frac{1}{1+e^{-x}}$ where $x$ is the sum of all the inputs going into the node. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
+      
       <footer class="inner">
         
         <p class="copyright">Study-Site maintained by <a href="https://github.com/XanderAP25">XanderAP25</a></p>

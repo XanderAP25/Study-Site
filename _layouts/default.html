@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ site.lang | default: "en-US" }}">
 
   <head>
@@ -7,10 +8,31 @@
     <meta name="viewport" content="width=device-width,maximum-scale=2">
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
 
-{% seo %}
+    {% seo %}
     {% include head-custom.html %}
+
+    <!-- MathJax for LaTeX Rendering -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" async
+      src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+      id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
   </head>
 
+  
   <body>
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -37,12 +59,14 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        
         {{ content }}
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
+      
       <footer class="inner">
         {% if site.github.is_project_page %}
         <p class="copyright">{{ site.respository | default: site.github.repository_name }} maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
