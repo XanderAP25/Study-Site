@@ -76,7 +76,9 @@ The Transformer model powers modern AI and enables many of the incredible applic
 
 ## How LLMs Benefit You and Their Challenges
 
-LLMs offer much in the way of enhancing productivity and creativity. At their core, they process text and generate a relevant response. This is a simplified explanation of how LLMs function, but it should be abundantly clear the potential that such a technology holds. For personal use, LLMs offer writing assistance with drafting emails and improving your grammar and style, summarization of large swathes of text, chatbots for getting assistance and troubleshooting, assistance with writing code, and so much more. The amount of applications available to LLMs are so great that we could be here all day listing them out and finding new uses for them.
+LLMs offer much in the way of enhancing productivity and creativity. At their core, they process text and generate a relevant response. This is a simplified explanation of how LLMs function, but it should be clear the potential that such a technology holds. Imagine having an assistant that can instantly digest large amounts of text and return a nice and neat summary for you to read or a peer to assist you with your highly technical math and programming workload. LLMs can do both of those tasks and more. They can be used as chatbots to assist with troubleshooting, a proofreader that can quickly patch the grammatical holes in your writing, and even a sounding board for ideas you might have for a project. These capabilities translate into a wide range of practical applications that benefit a wide range of people, and we haven't even covered every single capability of LLMs. From simplifying communication to enhancing our problem-solving and planning to automating tedious tasks, LLMs have proven their existence by integrating themselves as essential parts of our daily life and the workflows of professionals. Let's explore how exactly LLMs have made an impact.
+
+**(I thought I was better than this, but championships are this week, and I have not been able to get into a good frame of mind to get content together)**
 
 ## Training and Fine-Tuning an LLM
 
