@@ -1,4 +1,4 @@
-bu---
+---
 layout: default
 title: About
 ---

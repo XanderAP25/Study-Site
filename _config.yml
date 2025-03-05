@@ -6,6 +6,9 @@ plugins:
 title: A Study on LLMs
 repository: XanderAP25/Study-Site
 
+markdown: kramdown
+kramdown:
+  footnotes: true
 
 navigation:
   - title: Home
