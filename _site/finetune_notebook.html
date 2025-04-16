@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Notebook | A Study on LLMs</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Notebook" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/finetune_notebook.html" />
+<meta property="og:url" content="http://localhost:4000/finetune_notebook.html" />
+<meta property="og:site_name" content="A Study on LLMs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Notebook" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Notebook","url":"http://localhost:4000/finetune_notebook.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+    <!-- MathJax for LaTeX Rendering -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" async
+      src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+      id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
+  </head>
+
+  
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+            <a id="forkme_banner" href="https://github.com/XanderAP25/Study-Site">View on GitHub</a>
+          
+
+          <h1 id="project_title">A Study on LLMs</h1>
+          <h2 id="project_tagline"></h2>
+
+          
+          <nav class="site-nav">
+    
+      <a href="/">
+        Home
+      </a>
+    
+      <a href="/article.html">
+        A Guide to AI
+      </a>
+    
+      <a href="/stories.html">
+        Stories
+      </a>
+    
+      <a href="/notebooks.html">
+        Code Notebooks
+      </a>
+    
+      <a href="/about.html">
+        About
+      </a>
+    
+</nav>
+  
+        </header>
+        
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+        <h1 id="fine-tuning-a-language-model-for-story-generation-in-a-notebook-environment"><a href="https://colab.research.google.com/drive/1goVTnNt6FauofB_BAQ2Db4h8uWFvfY1d?usp=sharing">Fine-Tuning a Language Model for Story Generation in a Notebook Environment</a></h1>
+
+<p>Note: To load a model from Hugging Face, you will need to make a free account and set up an API key.</p>
+
+<p>More information on getting your key into Colab can be found here: https://drlee.io/how-to-use-secrets-in-google-colab-for-api-key-protection-a-guide-for-openai-huggingface-and-c1ec9e1277e0</p>
+
+<h2 id="story-generation">Story Generation</h2>
+
+<h3 id="baseline-pretrained-model-story-generation">Baseline Pretrained Model Story Generation</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dependencies
+</span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">pipeline</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<h4 id="load-the-model-and-tokenizer-and-set-up-generation-pipeline">Load the Model and Tokenizer and Set Up Generation Pipeline</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load Model &amp; Tokenizer
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="s">"mistralai/Mistral-7B-Instruct-v0.3"</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span>  <span class="c1"># Efficient on A100/L4
+</span><span class="p">)</span>
+
+<span class="c1"># Set up generation pipeline
+</span><span class="n">storyteller</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="generate-a-list-of-stories">Generate a List of Stories</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prompt (Baseline prompt)
+# Since we are using an instruct model, we must give it some type of instruction
+</span><span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">"Tell an original traditional German folktale that is at least 1000 words long. "</span>
+    <span class="s">"The story must end with 'The End' and should not include any additional content, "</span>
+    <span class="s">"analysis, references, or explanations. The story must be at least 1000 words long."</span>
+<span class="p">)</span>
+
+<span class="c1"># Set up params
+</span><span class="n">stories_to_generate</span> <span class="o">=</span> <span class="mi">63</span> <span class="c1"># Define the number of stories that you want the model to generate
+</span><span class="n">stories</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Create a list to hold the generated responses
+</span><span class="n">model_type</span> <span class="o">=</span> <span class="s">"baseline"</span> <span class="c1"># Designate the output as either baseline, ICL, or finetuned
+</span>
+<span class="c1"># Generate a number of short stories, and write them to a list
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">):</span>
+    <span class="c1"># Generate a story
+</span>    <span class="n">story</span> <span class="o">=</span> <span class="n">storyteller</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+        <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1800</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">eos_token_id</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># Ensures the output stops at a proper endpoint
+</span>    <span class="p">)</span>
+    <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">]</span> <span class="o">=</span> <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">stories</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">])</span>  <span class="c1"># Append the text of the generated story
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Story </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> generated."</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"***Generation Complete***"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="save-the-stories-to-csv-file">Save the Stories to CSV File</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save stories to a csv file for analyis
+</span><span class="k">def</span> <span class="nf">save_stories_to_csv</span><span class="p">(</span><span class="n">story_number</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"stories_number"</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+            <span class="s">"type"</span><span class="p">:</span> <span class="p">([</span><span class="n">model_type</span><span class="p">]</span> <span class="o">*</span> <span class="n">story_number</span><span class="p">),</span>
+            <span class="s">"prompt"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+            <span class="s">"output"</span><span class="p">:</span> <span class="n">stories</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="c1"># Set the filename depending on the changes to the prompt/model
+</span>        <span class="n">file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"stories_</span><span class="si">{</span><span class="n">model_type</span><span class="si">}</span><span class="s">.csv"</span>
+
+        <span class="c1"># Save the generated outputs to a csv file
+</span>        <span class="n">df</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">)</span>
+        <span class="c1"># return df
+</span>
+<span class="n">save_stories_to_csv</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+                    <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Stories saved to csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="story-generation-on-a-pretrained-model-using-icl">Story Generation on a Pretrained Model Using ICL</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dependencies
+</span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">pipeline</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">kagglehub</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+</code></pre></div></div>
+
+<p>Here the LLM will be given some stories from Grimm’s Fairy Tales as examples so that it will “learn” what a proper German fairy tale looks like. There are limits to how much context we can give the LLM before it begins to “forget”, so we will keep the set of example stories to below 2900 words.</p>
+
+<h4 id="load-and-prepare-grimms-dataset">Load and Prepare Grimm’s Dataset</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="n">kagglehub</span><span class="p">.</span><span class="n">dataset_download</span><span class="p">(</span><span class="s">"tschomacker/grimms-fairy-tales"</span><span class="p">)</span>
+
+<span class="c1"># List files in the directory
+</span><span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">grimms_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">grimms_df</span> <span class="o">=</span> <span class="n">grimms_df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># This row appears to be incomplete or made in error, so we will drop it
+</span>
+<span class="c1"># Add word count to the dataframe as a column
+</span><span class="n">grimms_df</span><span class="p">[</span><span class="s">'Word_Count'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grimms_df</span><span class="p">[</span><span class="s">'Text'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">split</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Function for selecting a random set of stories for ICL
+</span><span class="k">def</span> <span class="nf">select_stories_for_ICL</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Set parameters for selecting stories
+</span>    <span class="n">MAX_WORDS</span> <span class="o">=</span> <span class="mi">2900</span> <span class="c1"># Max words for set of stories
+</span>    <span class="n">stories_used</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># List of stories that are used for the prompt
+</span>    <span class="n">total_words</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Total words for the chosen set of stories
+</span>
+    <span class="c1"># Start with a random story
+</span>    <span class="n">first_story</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">total_words</span> <span class="o">=</span> <span class="n">first_story</span><span class="p">[</span><span class="s">"Word_Count"</span><span class="p">]</span>
+    <span class="n">stories_prompt</span> <span class="o">=</span> <span class="n">first_story</span><span class="p">[</span><span class="s">"Text"</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+    <span class="n">stories_used</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_story</span><span class="p">[</span><span class="s">"Title"</span><span class="p">])</span>
+
+    <span class="c1"># Shuffle the stories
+</span>    <span class="n">shuffled_stories</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Add more stories without exceeding the max word limit
+</span>    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">shuffled_stories</span><span class="p">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">total_words</span> <span class="o">+</span> <span class="n">story</span><span class="p">[</span><span class="s">"Word_Count"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">MAX_WORDS</span><span class="p">:</span>
+            <span class="n">total_words</span> <span class="o">+=</span> <span class="n">story</span><span class="p">[</span><span class="s">"Word_Count"</span><span class="p">]</span>
+            <span class="n">stories_used</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">story</span><span class="p">[</span><span class="s">"Title"</span><span class="p">])</span>
+            <span class="n">stories_prompt</span> <span class="o">+=</span> <span class="n">story</span><span class="p">[</span><span class="s">"Text"</span><span class="p">]</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">===</span><span class="se">\n</span><span class="s">"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c1"># Construct final prompt
+</span>    <span class="n">beg_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s">"Tell an original traditional German folktale that is at least 1000 words long. "</span>
+        <span class="s">"The story must end with 'The End' and should not include any additional content, "</span>
+        <span class="s">"analysis, references, or explanations."</span>
+    <span class="p">)</span>
+
+    <span class="n">end_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s">"Now, tell a single original traditional German folktale based on the structure and style above. "</span>
+        <span class="s">"Do not generate multiple stories. Only one story should be created, and it should follow the same "</span>
+        <span class="s">"narrative structure as the examples above. Conclude the story with 'The End.'"</span>
+    <span class="p">)</span>
+
+    <span class="n">final_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">beg_prompt</span><span class="si">}</span><span class="se">\n\n</span><span class="s">===</span><span class="se">\n</span><span class="si">{</span><span class="n">stories_prompt</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">end_prompt</span><span class="si">}</span><span class="s">"</span>
+
+    <span class="k">return</span> <span class="n">final_prompt</span><span class="p">,</span> <span class="n">stories_used</span>
+</code></pre></div></div>
+
+<h4 id="load-the-model-and-tokenizer-and-set-up-generation-pipeline-1">Load the Model and Tokenizer and Set Up Generation Pipeline</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load Model &amp; Tokenizer
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="s">"mistralai/Mistral-7B-Instruct-v0.3"</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span>  <span class="c1"># Efficient on A100/L4
+</span><span class="p">)</span>
+
+<span class="c1"># Set up generation pipeline
+</span><span class="n">storyteller</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="generate-a-list-of-stories-using-icl">Generate a List of Stories Using ICL</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set up params
+</span><span class="n">stories_to_generate</span> <span class="o">=</span> <span class="mi">63</span> <span class="c1"># Define the number of stories that you want the model to generate
+</span><span class="n">stories</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Create a list to hold the generated responses
+</span><span class="n">model_type</span> <span class="o">=</span> <span class="s">"ICL"</span> <span class="c1"># Designate the output as either baseline, ICL, or finetuned
+</span><span class="n">stories_used_composite</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># List of stories that are used for the prompt
+</span>
+<span class="c1"># Generate a number of short stories, and write them to a list
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">):</span>
+    <span class="n">ICL_prompt</span><span class="p">,</span> <span class="n">stories_used</span> <span class="o">=</span> <span class="n">select_stories_for_ICL</span><span class="p">(</span><span class="n">grimms_df</span><span class="p">)</span>
+    <span class="c1"># Generate a story
+</span>    <span class="n">story</span> <span class="o">=</span> <span class="n">storyteller</span><span class="p">(</span>
+        <span class="n">ICL_prompt</span><span class="p">,</span>
+        <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1800</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">eos_token_id</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># Ensures the output stops at a proper endpoint
+</span>    <span class="p">)</span>
+    <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">]</span> <span class="o">=</span> <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">stories</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">])</span>  <span class="c1"># Append the text of the generated story
+</span>    <span class="n">stories_used_composite</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stories_used</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Story </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> generated."</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">"stories_used"</span><span class="p">:</span> <span class="n">stories_used_composite</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"***Generation Complete***"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="save-the-stories-to-csv-file-1">Save the Stories to CSV File</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save stories to a csv file for analyis
+</span><span class="k">def</span> <span class="nf">save_stories_to_csv</span><span class="p">(</span><span class="n">story_number</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories_used</span><span class="p">,</span> <span class="n">stories</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"stories_number"</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+            <span class="s">"type"</span><span class="p">:</span> <span class="p">([</span><span class="n">model_type</span><span class="p">]</span> <span class="o">*</span> <span class="n">story_number</span><span class="p">),</span>
+            <span class="s">"prompt"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+            <span class="s">"stories_used"</span><span class="p">:</span> <span class="n">stories_used</span><span class="p">,</span>
+            <span class="s">"output"</span><span class="p">:</span> <span class="n">stories</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="c1"># Set the filename depending on the changes to the prompt/model
+</span>        <span class="n">file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"stories_</span><span class="si">{</span><span class="n">model_type</span><span class="si">}</span><span class="s">.csv"</span>
+
+        <span class="c1"># Save the generated outputs to a csv file
+</span>        <span class="n">df</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">)</span>
+        <span class="c1"># return df
+</span>
+<span class="n">save_stories_to_csv</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+                    <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories_used_composite</span><span class="p">,</span> <span class="n">stories</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Stories saved to csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="story-generation-using-a-saved-fine-tuned-model">Story Generation Using a Saved Fine-Tuned Model</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dependencies
+</span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">pipeline</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">bitsandbytes</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<h4 id="load-finetuned-model-tokenizer-and-set-up-pipeline">Load Finetuned Model, Tokenizer, and Set Up Pipeline</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set model path, this is how it should be if you are in Colab
+</span><span class="n">model_path</span> <span class="o">=</span> <span class="s">"/content/Mistral Finetune"</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span>
+<span class="p">)</span>
+
+<span class="n">storyteller</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s">"auto"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="generate-a-list-of-stories-using-a-finetuned-model">Generate a List of Stories Using a Finetuned Model</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prompt (same as baseline prompt)
+# Since we are using an instruct model, we must give it some type of instruction
+</span><span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">"Tell an original traditional German folktale that is at least 1000 words long. "</span>
+    <span class="s">"The story must end with 'The End' and should not include any additional content, "</span>
+    <span class="s">"analysis, references, or explanations. The story must be at least 1000 words long."</span>
+<span class="p">)</span>
+
+<span class="c1"># Set up params
+</span><span class="n">stories_to_generate</span> <span class="o">=</span> <span class="mi">63</span> <span class="c1"># Define the number of stories that you want the model to generate
+</span><span class="n">stories</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Create a list to hold the generated responses
+</span><span class="n">model_type</span> <span class="o">=</span> <span class="s">"finetune"</span> <span class="c1"># Designate the output as either baseline, ICL, or finetuned
+</span>
+<span class="c1"># Generate a number of short stories, and write them to a list
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">):</span>
+    <span class="c1"># Generate a story
+</span>    <span class="n">story</span> <span class="o">=</span> <span class="n">storyteller</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1800</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">eos_token_id</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># Ensures the output stops at a proper endpoint
+</span>    <span class="p">)</span>
+    <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">]</span> <span class="o">=</span> <span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">stories</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">story</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'generated_text'</span><span class="p">])</span>  <span class="c1"># Append the text of the generated story
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Story </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> generated."</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"***Generation Complete***"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="save-finetuned-stories-to-csv">Save Finetuned Stories to CSV</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save stories to a csv file for analyis
+</span><span class="k">def</span> <span class="nf">save_stories_to_csv</span><span class="p">(</span><span class="n">story_number</span><span class="p">,</span> <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"stories_number"</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+            <span class="s">"type"</span><span class="p">:</span> <span class="p">([</span><span class="n">model_type</span><span class="p">]</span> <span class="o">*</span> <span class="n">story_number</span><span class="p">),</span>
+            <span class="s">"prompt"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+            <span class="s">"output"</span><span class="p">:</span> <span class="n">stories</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="c1"># Set the filename depending on the changes to the prompt/model
+</span>        <span class="n">file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"stories_</span><span class="si">{</span><span class="n">model_type</span><span class="si">}</span><span class="s">.csv"</span>
+
+        <span class="c1"># Save the generated outputs to a csv file
+</span>        <span class="n">df</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">)</span>
+        <span class="c1"># return df
+</span>
+<span class="n">save_stories_to_csv</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stories_to_generate</span><span class="p">)),</span>
+                    <span class="n">model_type</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">stories</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Stories saved to csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="finetuning-a-model-using-unsloth">Finetuning a Model Using Unsloth</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install dependencies
+</span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">if</span> <span class="s">"COLAB_"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">unsloth</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Do this only in Colab notebooks! Otherwise use pip install unsloth
+</span>    <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">bitsandbytes</span> <span class="n">accelerate</span> <span class="n">xformers</span><span class="o">==</span><span class="mf">0.0</span><span class="p">.</span><span class="mf">29.</span><span class="n">post3</span> <span class="n">peft</span> <span class="n">trl</span> <span class="n">triton</span> <span class="n">cut_cross_entropy</span> <span class="n">unsloth_zoo</span>
+    <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">sentencepiece</span> <span class="n">protobuf</span> <span class="n">datasets</span> <span class="n">huggingface_hub</span> <span class="n">hf_transfer</span>
+    <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">unsloth</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dependencies
+</span><span class="kn">from</span> <span class="nn">unsloth</span> <span class="kn">import</span> <span class="n">FastLanguageModel</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">TextStreamer</span><span class="p">,</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span> <span class="nn">trl</span> <span class="kn">import</span> <span class="n">SFTTrainer</span>
+<span class="kn">from</span> <span class="nn">unsloth</span> <span class="kn">import</span> <span class="n">is_bfloat16_supported</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">kagglehub</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</code></pre></div></div>
+
+<h4 id="load-pretrained-model-for-finetuning">Load Pretrained Model for Finetuning</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load your model of choice
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="s">"mistralai/Mistral-7B-Instruct-v0.3"</span>
+
+<span class="c1"># Initialize model and tokenizer
+</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span>
+    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>  <span class="c1"># Make sure this matches your input length requirements
+</span>    <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span><span class="p">,</span>  <span class="c1"># Use float16 for efficiency
+</span>    <span class="n">load_in_4bit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1"># Ensure LoRA is being used
+</span><span class="p">)</span>
+
+<span class="n">EOS_TOKEN</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_token</span>  <span class="c1"># Ensure you have the tokenizer before initilization
+</span>
+<span class="c1"># Set up LoRA with PEFT
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="p">.</span><span class="n">get_peft_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>  <span class="c1"># Rank for LoRA (increase for more parameters)
+</span>    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>  <span class="c1"># Scaling factor
+</span>    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>  <span class="c1"># Regularization
+</span>    <span class="n">bias</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span>  <span class="c1"># No bias training
+</span>    <span class="n">use_gradient_checkpointing</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1"># Memory efficiency
+</span>    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">use_rslora</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>  <span class="c1"># Standard LoRA
+</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="load-training-data">Load Training Data</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="n">kagglehub</span><span class="p">.</span><span class="n">dataset_download</span><span class="p">(</span><span class="s">"tschomacker/grimms-fairy-tales"</span><span class="p">)</span>
+
+<span class="c1"># List files in the directory
+</span><span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Convert to JSONL format for fine-tuning
+</span><span class="n">jsonl_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"instruction"</span><span class="p">:</span> <span class="s">"Tell me a German fairy tale."</span><span class="p">,</span> <span class="s">"input"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="s">"output"</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s">"Text"</span><span class="p">]}</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">iterrows</span><span class="p">()</span>
+<span class="p">]</span>
+
+<span class="c1"># Save the JSON file
+</span><span class="n">jsonl_path</span> <span class="o">=</span> <span class="s">"fairy_tales.jsonl"</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">jsonl_path</span><span class="p">,</span> <span class="s">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">jsonl_data</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Dataset saved to </span><span class="si">{</span><span class="n">jsonl_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Assuming you already loaded your dataset as a JSON object:
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s">"json"</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s">"fairy_tales.jsonl"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s">"train[:2500]"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="finetune-the-pretrained-model">Finetune the Pretrained Model</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">formatting_prompts_func</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="n">formatted_texts</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">instruction</span><span class="p">,</span> <span class="n">input_text</span><span class="p">,</span> <span class="n">output</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="s">"instruction"</span><span class="p">],</span> <span class="n">examples</span><span class="p">[</span><span class="s">"input"</span><span class="p">],</span> <span class="n">examples</span><span class="p">[</span><span class="s">"output"</span><span class="p">]):</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">instruction</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">input_text</span><span class="si">}</span><span class="s">"</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">output</span><span class="si">}{</span><span class="n">EOS_TOKEN</span><span class="si">}</span><span class="s">"</span>  <span class="c1"># Ensure the output has an EOS token
+</span>
+        <span class="n">formatted_texts</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">completion</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>  <span class="c1"># Instruction + Input + Output
+</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"text"</span><span class="p">:</span> <span class="n">formatted_texts</span><span class="p">}</span>
+
+<span class="c1"># Apply the formatting function to your dataset
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">formatting_prompts_func</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Now proceed with the SFTTrainer
+</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">SFTTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+    <span class="n">dataset_text_field</span><span class="o">=</span><span class="s">"text"</span><span class="p">,</span>  <span class="c1"># Adjust field name based on your data
+</span>    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
+    <span class="n">dataset_num_proc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">packing</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>  <span class="c1"># Adjust based on sequence lengths
+</span>    <span class="n">args</span><span class="o">=</span><span class="n">TrainingArguments</span><span class="p">(</span>
+        <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-4</span><span class="p">,</span>
+        <span class="n">fp16</span><span class="o">=</span><span class="n">is_bfloat16_supported</span><span class="p">(),</span>
+        <span class="n">bf16</span><span class="o">=</span><span class="ow">not</span> <span class="n">is_bfloat16_supported</span><span class="p">(),</span>
+        <span class="n">logging_steps</span><span class="o">=</span><span class="mi">816</span><span class="p">,</span>
+        <span class="n">optim</span><span class="o">=</span><span class="s">"adamw_8bit"</span><span class="p">,</span>
+        <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">lr_scheduler_type</span><span class="o">=</span><span class="s">"linear"</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">3407</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="s">"/content"</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="generate-output-with-the-new-model">Generate Output With the New Model</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">streamer</span> <span class="o">=</span> <span class="n">TextStreamer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">"Tell an original traditional German folktale. "</span>
+    <span class="s">"The story must end with 'The End' and should not include any additional content, "</span>
+    <span class="s">"analysis, references, or explanations."</span>
+<span class="p">)</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">],</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">streamer</span><span class="o">=</span><span class="n">streamer</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>         <span class="c1"># Nucleus sampling (0.9 keeps only 90% most probable words)
+</span>    <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="save-the-finetuned-model-and-tokenizer">Save the Finetuned Model and Tokenizer</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save fine-tuned model
+</span><span class="n">model</span><span class="p">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s">"mistral_finetuned"</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="p">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s">"mistral_finetuned"</span><span class="p">)</span>
+</code></pre></div></div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      
+      <footer class="inner">
+        
+        <p class="copyright">Study-Site maintained by <a href="https://github.com/XanderAP25">XanderAP25</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

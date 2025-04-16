@@ -2,6 +2,9 @@
   link: "/"
 - name: A Guide to AI
   link: "/article.html"
+- name: Stories
+  link: "/stories.html"
+- name: Code Notebooks
+  link: "/notebooks.html"
 - name: About
   link: "/about.html"
-

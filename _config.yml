@@ -15,7 +15,12 @@ navigation:
     url: /
   - title: About
     url: /about/
-
+  - title: Article
+    url: /article/
+  - title: Stories
+    url: /stories/
+  - title: Notebook
+    url: /notebook/
 sass:
   sass_dir: _sass
   style: compressed

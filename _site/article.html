@@ -79,6 +79,14 @@
         A Guide to AI
       </a>
     
+      <a href="/stories.html">
+        Stories
+      </a>
+    
+      <a href="/notebooks.html">
+        Code Notebooks
+      </a>
+    
       <a href="/about.html">
         About
       </a>
@@ -95,13 +103,11 @@
         
         <h1 id="demystifying-ai-a-guide-to-llms">Demystifying AI: A Guide to LLMs</h1>
 
-<p>Depending on who you are, and your interests, different things likely come to mind when you hear “AI”. Maybe you think of Skynet from <em>Terminator</em>, J.A.R.V.I.S from <em>Iron Man</em>, or Cortana from <em>Halo</em>. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Claude are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be incredibly useful. They can read papers for you, write stories and programs, and are now showing themselves to be capable of logically thinking through problems. Impressive? Absolutely. But not magic.</p>
+<p>Depending on who you are, and your interests, different things likely come to mind when you hear “AI”. Maybe you think of Skynet from <em>Terminator</em>, J.A.R.V.I.S from <em>Iron Man</em>, or Cortana from <em>Halo</em>. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Claude are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be incredibly useful. They can read papers for you, write stories and programs, and are now seemingly able to reason through problems with the introduction of reasoning models. Impressive? Absolutely. But not magic.</p>
 
-<p>With some time and effort, you can not only come to understand how AI works, but how to make it work for you. It is with that purpose that this guide exists, to distill the dense and scattered information that is out there on AI into a more concise and easily digestible form.</p>
+<p>In this tutorial you can not only come to understand how AI works, but how to make it work for you. It is with that purpose that this guide exists, to distill the dense and scattered information that is out there on AI into a more concise and easily digestible form.</p>
 
-<p>This article is intended for those unfamiliar with the inner workings of artificial intelligence, and the AI applications beyond just using tools like ChatGPT, Gemini, or Claude. No deep math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you’re new to AI, this guide will give you a solid foundation.</p>
-
-<p>STILL CONSIDERING HOW I’M GOING TO GIVE A “here’s what we’re doing and why we’re doing it this way” PIECE UP HERE</p>
+<p>This article is intended for those unfamiliar with the inner workings of artificial intelligence and the AI applications beyond chatbots like ChatGPT, Gemini, or Claude. No complex math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you’re new to AI, this guide will give you a solid foundation.</p>
 
 <table>
   <thead>
@@ -127,13 +133,13 @@
 
 <h2 id="introduction-to-ai-and-llms">Introduction to AI and LLMs</h2>
 
-<p>Before we explore artifical intelligence, let’s briefly consider what intelligence itself is. Intelligence is granted to us by the supercomputer that is our brain. So, what can we do with our brains? We can analyze information, learn from experience, reason through problems, and make decisions. Artificial intelligence is the ability of a machine to perform tasks that require human intelligence. There are many algorithms and models that can fuel artificial intelligence. What all these algorithms have in common is that they are driven by training on a set of data to perform a certain task.</p>
+<p>Before we explore artificial intelligence, let’s briefly consider what intelligence itself is. Intelligence is granted to us by the feat of evolution that is our brain. So, what can we do with our brains? We can analyze information, learn from experience, reason through problems, and make decisions. Artificial intelligence is the ability of a machine to perform tasks that require human intelligence. There are many models that can fuel artificial intelligence, and we will get into what exactly fuels these models later into the article.</p>
 
-<p>A simple example of this is linear regression analysis, which works by feeding data into the algorithm as predictors and a target outcome. Based on the training data, the algorithm learns the relationships between the predictors and target variables, allowing it to make predictions.</p>
+<p>What all these models have in common is that they are driven by training on a set of data to perform a certain task.</p>
 
-<p><strong>big cool image illustrating linear regression</strong></p>
+<p>A simple example of this is linear regression analysis, which works by feeding data into the model as predictors and a target outcome. Based on the training data, the model learns the relationships between the predictors and target variables, allowing it to make predictions.</p>
 
-<p>A more advanced example would be neural networks, which are inspired by the neurons in our brains. Like our neurons, these artificial neurons take data as an input, then send that data along synapses to another set of neurons until the data is eventually transmitted as an output (<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>). We skipped a lot of steps, so let’s take a moment to look at neural networks more closely.</p>
+<p>A more advanced example would be neural networks, which are inspired by the neurons in our brains. Like our neurons, these artificial neurons take data as an input, then send that data along “synapses” to another set of neurons until the data is eventually transmitted as an output (<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>). We skipped a lot of steps, so let’s take a moment to look at neural networks more closely.</p>
 
 <p><img src="assets/images/Neuron Visual (2).png" style="width:650px;display:block; margin:auto;" />
 <span style="font-family:Arial; font-size:xx-small; ">Illustration of the traversal of input data through neurons.</span></p>
@@ -184,7 +190,7 @@
 
 <p>In education, LLMs are transforming how we teach and learn. Think about the time-consuming tasks teachers face daily—creating assessments, developing lesson plans, providing individualized feedback. LLMs can handle all of these efficiently. These tools can develop personalized learning materials like summaries, flashcards, and quizzes tailored to individual students <sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup>. What’s particularly impressive is how LLMs can make grading more consistent and fair by reducing the subjective biases that naturally creep into human assessment <sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>. Beyond just saving time, these models offer powerful language support—helping students learn new languages, assisting non-native speakers with translations, and even teaching coding skills. What could be most valuable is how using LLMs in classrooms now prepares students for the future state of the workforce. As students learn to craft effective prompts through trial and error, they’re building critical thinking skills and technological literacy that will serve them regardless of which careers emerge in our AI-integrated future.</p>
 
-<p>The benefits of AI aren’t just limited to any one field or person, they’re already reshaping our world in unexpected ways. In the healthcare field specficially, there have been major strides in drug discovery and molecular synthesis with AI models as the drivng forces. Insilico is a company that has made use of generative AI (not an LLM exactly but under a similar umbrella to develop a drug that is currently in Phase 2 clinical trials <sup id="fnref:7:1" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>. Now, they’ve built an LLM-powered system called Nach0, which designs molecules, predicts their properties, and even suggests ways to synthesize them, potentially cutting years off drug development timelines <sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup>.</p>
+<p>The benefits of AI aren’t just limited to any one field or person, they’re already reshaping our world in unexpected ways. In the healthcare field specficially, there have been major strides in drug discovery and molecular synthesis with AI models as the drivng forces. Insilico is a company that has made use of generative AI not an LLM exactly but under a similar umbrella to develop a drug that is currently in Phase 2 clinical trials <sup id="fnref:7:1" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>. Now, they’ve built an LLM-powered system called Nach0, which designs molecules, predicts their properties, and even suggests ways to synthesize them, potentially cutting years off drug development timelines <sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup>.</p>
 
 <p>While there is a lot of good that LLMs can do for you and the world at large, they are not a miracle technology with zero drawbacks. One of the most controversal downsides to their very existence is how their training data is obtained and used. We’ll be covering this soon, but LLMs need vast amounts of data to get as competent as they’ve become today. An easy way to get this data is to scrape the entire internet. The owners and creators of digital content are not asked for their consent when their material is used to train AI systems, and this has led to tons of debate on the ethical and legal ramifications of training AI. Currently, there is no law against scraping data from the web and using it to train your models, but some organizations like the <em>New York Times</em>, have moved forward with lawsuits against both OpenAI and Microsoft over the use of their copyrighted content to train their models <sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup>. This raises an ethical dilemma: should AI companies profit from models trained on content they don’t own? Opponents, like <em>The New York Times</em>, argue that it disregards creators’ rights and exploits their work without compensation. Proponents counter that broad data scraping is essential for AI advancement and the benefits it brings, essentially saying that the ends justify the means.</p>
 
@@ -264,7 +270,7 @@
 
 <p>As mentioned earlier, another option is downloading and running an LLM directly on your own computer. Running LLMs locally gives you more control over your data, as it is stored entirely on your device and never shared with the model’s creator. There are also no fees for running a local LLM. While this might sound like the ideal option, there are several caveats to consider. For one, these models require fairly powerful hardware to run efficiently. Although there is no fee to use a local LLM, you will likely need to invest in a powerful PC to get the most out of the technology. Smaller models can be run on more modest hardware, such as a relatively modern laptop, but you’ll likely experience slower output and lower quality compared to running top-tier models on a high-performance PC with a strong NVIDIA GPU. (Touch on electricity use and the likelihood of it raising your electricity bill).</p>
 
-<p><strong>(I should also touch on GPT4ALL and LM Studio here)</strong></p>
+<p><strong>(I should also touch on GPT4ALL and LM Studio here, hugging face API free tier)</strong></p>
 
 <p>To get an LLM up and running on your own machine, you will need a platform to run them on. One of the most popular platforms for this purpose is <a href="https://ollama.com">Ollama</a>, an open-source tool that allows you to run AI models that you have downloaded through a terminal. Setup is fairly straightforward, just download the application from the website, and follow the steps it gives you to get up and running. The Ollama website also hosts models for you to get up and running, but you can also run models from Hugging Face if there is something there that is more suited to your needs (i just realized that I have not talked about hugging face at all in this entire article). These models are measured by how many parameters they have, and they are formatted like “8B” meaning 8-billion parameters in this case. For weaker computers, like laptops, you will want to use models that are at most 8B. Depending on how powerful your laptop is, you could go higher than that, especially if it has a dedicated NVIDIA GPU. For PCs, you can go higher than this, but will still find a limit around the 30B parameter mark. Despite that being the limit, there are models available for download with upwards of 70B parameters, going into the 600-billions.</p>
 
