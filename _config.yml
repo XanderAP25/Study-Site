@@ -3,6 +3,8 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
+baseurl: "/Study-Site"
+
 title: A Study on LLMs
 repository: XanderAP25/Study-Site
 
@@ -19,8 +21,12 @@ navigation:
     url: /article/
   - title: Stories
     url: /stories/
-  - title: Notebook
-    url: /notebook/
+  - title: Notebooks
+    url: /notebooks/
+  - title: Text Analysis Notebook
+    url: /text_analysis_notebook/
+  - title: Finetune Notebook
+    url: /notebook_notebook/
 sass:
   sass_dir: _sass
   style: compressed
