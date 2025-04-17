@@ -196,7 +196,7 @@ Comparing language...
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="assets\images\text_analysis_notebook_9_0.png" alt="png" /></p>
+<p><img src="/assets/images/text_analysis_notebook_9_0.png" alt="png" /></p>
 
 <p>It is immediately clear that “Hans” is an overwhelmingly distinct word that appeared in the baseline output. Hans is a relatively popular name in Germany. So, while it is surprising to see it featured so prominently, it can be explained as the model just making the connection between Hans and “German Fairy Tales” and using this stereotypical name as a crutch when a character needed a name. Grimm’s Fairy Tales see more variety in their names, and while Hans is used in the story <em>Hans in Luck</em> it isn’t featured much aside from that. Instead, we get more unique names like “Chanticleer” and “Partlet”, or the story just referring to characters by what they are, like “the king,” which just so happens to be the most distinct word in the Grimm’s corpus. We also see this with words like “mother” and “father” featuring in the top 15, which could align with the idea of calling characters what they are. More likely, this is likely a result of German fairy tales frequently featuring themes or lessons for children to follow, with one of the more popular ones being listenting to your parents.</p>
 
@@ -223,7 +223,7 @@ Comparing language...
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="assets\images\text_analysis_notebook_12_0.png" alt="png" /></p>
+<p><img src="/assets/images/text_analysis_notebook_12_0.png" alt="png" /></p>
 
 <p>Hans still features prominently, but has fallen from a z-score of 26.6 to around 7.41, and sits below “fox” and “bread”. Those words, along with “loaf” indicate a more fable-like quality to the output, with Aesop in particular coming to mind. Foxes feature prominently in some actual Germanic fairy tales, so it is possible that when given an example with a fox, or bread, the model latched onto it as prime fairy tale material.</p>
 
@@ -252,7 +252,7 @@ Comparing language...
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="assets\images\text_analysis_notebook_15_0.png" alt="png" /></p>
+<p><img src="/assets/images/text_analysis_notebook_15_0.png" alt="png" /></p>
 
 <p>Post-finetune, Hans is no longer in the top 15 most distinct words, and this is likely due to the model being tuned on more names that are actually used in German fairy tales. “Queen” now also features more distinctly in the generated output than in the Grimm’s corpus, meaning that the generated outputs could be seeing more focus on royalty relative to Grimm’s fairy tales. Interestingly, the distinct words of the fine-tuned output are more grounded than the baseline model’s output, with the only fantasy-adjacent word being “dwarf” which is a fantasy creature closely related with Germanic folklore. We have occupations like “miller”, “woodsman”, and “shepherd” featuring more distinctly in the generated output. These could be common origins for characters before they go through their transformative adventure or ordeal. This is aligns with the structure of German fairy tales, and while the previous models implied some humble beginnings due to the prominence of “village,” the added variety shows a higher level of understanding to what a Germanic humble beginning could look like.</p>
 
@@ -709,7 +709,7 @@ Comparing language...
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="assets\images\text_analysis_notebook_20_0.png" alt="png" /></p>
+<p><img src="/assets/images/text_analysis_notebook_20_0.png" alt="png" /></p>
 
 <p>From our word features analysis, we can see that using either in-context learning or fine-tuning generally brings the structure and word choice of the output closer in line with Grimm’s Fairy Tales. This isn’t too surprising, since ICL gives the model a few examples to work from, while fine-tuning exposes it to the entire corpus. What’s more interesting is just how close the ICL and fine-tuned outputs are to each other, and to Grimm’s, across most metrics. For the most part, the fine-tuned outputs are slightly closer to Grimm’s across the board, but the gap isn’t always that big. In many cases, ICL gets close enough that it raises the question of whether full fine-tuning is actually necessary if the goal is just stylistic mimicry.</p>
 
@@ -1119,7 +1119,7 @@ Comparing language...
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="assets\images\text_analysis_notebook_26_0.png" alt="png" /></p>
+<p><img src="/assets/images/text_analysis_notebook_26_0.png" alt="png" /></p>
 
 <p>Across all stories, male pronouns are far more common, which makes sense given what we saw earlier in the fighting words analysis of the outputs compared to Grimm’s fairy tales. The prominence of Hans, and traditionally male professions like woodsman, millers, and shepherd likely have a role to play in the larger representation of men in the generated stories. It seems that there is overlap between all the notches of the boxes in the masculine box plot, meaning that there is not a statistically significant enough change in male pronoun use to conclude that there has been a downward shift in male representation. We can observe that the first quartile is smaller, and the second quarter goes lower in the ICL, fine-tuned, and Grimms box plots than the baseline, however. This suggests that a larger portion of those stories are using fewer male pronouns, even if the medians are the same. This isn’t enough to say that male representation is declining in the ICL and fine-tuned stories, but it does point to a wider range of how prevelant masculine-centered language is used compared to baseline.</p>
 
