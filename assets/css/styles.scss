@@ -35,3 +35,21 @@
     color: #9da5b4; // White text on hover for contrast
     text-decoration: underline;
 }
+
+.footnotes {
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal; 
+    max-width: 100%; 
+  }
+  
+  .footnotes li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .footnote {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
