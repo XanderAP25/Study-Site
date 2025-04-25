@@ -1,10 +1,32 @@
 - name: Home
   link: "/"
-- name: A Guide to AI
-  link: "/article.html"
+
+- name: A Guide to LLMs
+  sublinks:
+    - name: Introduction to AI and LLMs
+      link: /intro_to_ai_and_llms.html
+    - name: How LLMs Benefit You and Their Challenges
+      link: /how_llms_benefit_you_and_their_challenges.html
+    - name: Training and Fine-Tuning an LLM
+      link: /training_and_fine_tuning_an_llm.html
+    - name: Making LLMs Work for You
+      link: /making_llms_work_for_you.html
+
+- name: Case Study
+  link: "/case_study.html"
+  sublinks:
+    - name: Fine-Tuning a Model on Grimm's Fairy Tales
+      link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+      target: "_blank"
+    - name: Generating German Fairy Tales with an LLM
+      link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+      target: "_blank"
+    - name: Text Analysis of Output and Grimms
+      link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+      target: "_blank"
+
 - name: Stories
-  link: "/stories.html"
-- name: Code Notebooks
-  link: "/notebooks.html"
+  link: "/stories.html"  
+
 - name: About
   link: "/about.html"

@@ -17,10 +17,26 @@
     padding: 0;
 }
 
+.dropdown-label {
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 10px;
+  display: inline-block;
+  cursor: default;
+}
+
+.dropdown-label:hover {
+  color: #373737; // Want it to blend in with the background color on hover
+  text-decoration: none;
+}
+
 .site-nav li {
     display: inline-block;
-    margin: 0 20px;
-}
+    margin: 0 10px;
+    position: relative;
+  }
+  
 
 .site-nav a {
     color: white; 
@@ -36,6 +52,48 @@
     text-decoration: underline;
 }
 
+/* Dropdown Container */
+.site-nav li.dropdown {
+    position: relative;
+  }
+  
+  /* Hide dropdown by default */
+  .site-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #2a2e38;
+    min-width: 200px;
+    text-align: left;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
+  
+  /* Show on hover */
+  .site-nav li.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Dropdown link styling */
+  .site-nav .dropdown-menu li {
+    display: block;
+    margin: 0;
+  }
+  
+  .site-nav .dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    background-color: transparent;
+    transition: background-color 0.3s;
+  }
+  
+  .site-nav .dropdown-menu li a:hover {
+    background-color: #3b404c;
+    text-decoration: none;
+    color: #cfd4e4;
+  }
+  
 .footnotes {
     word-wrap: break-word;
     overflow-wrap: break-word; 

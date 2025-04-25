@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" href="/Study-Site/assets/css/styles.css">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Training and Fine-Tuning an LLM | A Study on LLMs</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Training and Fine-Tuning an LLM" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/Study-Site/training_and_fine_tuning_an_llm.html" />
+<meta property="og:url" content="http://localhost:4000/Study-Site/training_and_fine_tuning_an_llm.html" />
+<meta property="og:site_name" content="A Study on LLMs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Training and Fine-Tuning an LLM" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Training and Fine-Tuning an LLM","url":"http://localhost:4000/Study-Site/training_and_fine_tuning_an_llm.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/Study-Site/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+    <!-- MathJax for LaTeX Rendering -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" async
+      src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+      id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
+  </head>
+
+  
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+            <a id="forkme_banner" href="https://github.com/XanderAP25/Study-Site">View on GitHub</a>
+          
+
+          <h1 id="project_title">Demystifying AI: A Guide to LLMs</h1>
+
+          
+          <nav class="site-nav">
+  <ul class="nav">
+    
+      
+      <li>
+        <a href="/Study-Site/"
+          
+          >
+          Home
+        </a>
+      </li>
+      
+    
+      
+      <li class="dropdown">
+        
+          <span class="dropdown-label">A Guide to LLMs ▾</span>
+        
+        <ul class="dropdown-menu">
+          
+            <li>
+              <a href="/Study-Site/intro_to_ai_and_llms.html"
+                
+                >
+                Introduction to AI and LLMs
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Study-Site/how_llms_benefit_you_and_their_challenges.html"
+                
+                >
+                How LLMs Benefit You and Their Challenges
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Study-Site/training_and_fine_tuning_an_llm.html"
+                
+                 class="current" >
+                Training and Fine-Tuning an LLM
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Study-Site/making_llms_work_for_you.html"
+                
+                >
+                Making LLMs Work for You
+              </a>
+            </li>
+          
+        </ul>
+      </li>
+      
+    
+      
+      <li class="dropdown">
+        
+          <a href="/Study-Site/case_study.html">Case Study ▾</a>
+        
+        <ul class="dropdown-menu">
+          
+            <li>
+              <a href="https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+                 target="_blank" 
+                >
+                Fine-Tuning a Model on Grimm's Fairy Tales
+              </a>
+            </li>
+          
+            <li>
+              <a href="https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+                 target="_blank" 
+                >
+                Generating German Fairy Tales with an LLM
+              </a>
+            </li>
+          
+            <li>
+              <a href="https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+                 target="_blank" 
+                >
+                Text Analysis of Output and Grimms
+              </a>
+            </li>
+          
+        </ul>
+      </li>
+      
+    
+      
+      <li>
+        <a href="/Study-Site/stories.html"
+          
+          >
+          Stories
+        </a>
+      </li>
+      
+    
+      
+      <li>
+        <a href="/Study-Site/about.html"
+          
+          >
+          About
+        </a>
+      </li>
+      
+    
+  </ul>
+</nav>
+  
+        </header>   
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2 id="training-and-fine-tuning-an-llm">Training and Fine-Tuning an LLM</h2>
+
+<p>We briefly covered how models are trained in the first section, but let’s recap. During training, models process massive sequences of text, analyzing how words relate to one another within a given context. By identifying these relationships, the model learns to predict and generate coherent text based on patterns in its training data. These pre-trained LLMs are what most people will be working with when setting up their own specialized LLM, largely due to the fact that not everyone has the ability to dedicate unfathomable amounts of energy towards the LLM of their dreams. This is where In-Context Learning and fine-tuning come into play.</p>
+
+<p>Both of these techniques influence the LLM’s output, but the way each of them work is fundamentally different. Fine-tuning involves retraining the model itself on new data, altering its parameters. In-Context Learning does not require any tweaks to the parameters for the model to become specialized to whatever task you are training it for. Instead, you provide the model with examples, and it learns on the fly as you basically give it an education on whatever topic you are trying to specialize it for <sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">1</a></sup>. This is really useful if you want to have a model specialized for tasks such as text classification, sentiment analysis, or language translation, since you can fork over a bunch of examples to the AI, and have it learn how to do these tasks for you. Of course, it isn’t as simple as that, but it really isn’t that much more complex. Let’s take sentiment anaylsis as an example. You want to have your LLM know how to tell whether a review on a movie is positive or negative. To do this, you want to provide a set of demonstration examples for it to follow through a prompt.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prompt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Answer the upcoming prompts using this format: <br />Review: This movie was nothing but a waste of my time and money, I’m done with this franchise. Sentiment: Negative<br />Review: The ultimate conclusion to a story five years in the making. I am speechless. Sentiment: Positive<br />Review: While the visuals and flashy fights were enough to get me through the movie, I just could not engage with the story. Sentiment: Negative</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>That is all you need to do for a basic implementation of In-Context Learning, just give the LLM an example to follow, and it will adhere to it to the best of its abilities. Now, there are some complexities to this technique that can let you get the most out of it. Specifically, one must consider the selection of what data is used in the prompt, the format that it is presented in, and the order that it is given to the AI <sup id="fnref:11:1" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">1</a></sup>. We want to provide relevant examples that are formatted in the most consumable format for the AI, and these examples should build on each other logically, like how we don’t learn division before we learn how to add, subtract, and multiply. Taking time to work out how you’ll educate your AI before actually carrying it out will lead to a better result. For more information on the techniques involved in maximizing In-Context Learning, I would recommend checking out <em>A Survey on In-Context Learning</em> and the numerous sources it points to for improved learning practices <sup id="fnref:11:2" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<p>Fine-tuning is more involved than In-Context Learning, requiring modification of the model’s parameters by training it on new data that is specialized for the intended function that you want the LLM to perform. Since the LLM is being retrained, the end result is a model that can more effectively carry out the task given to it. The process of fine-tuning requires a dataset relevant to what you want to specialize your LLM for. If that is a sentiment analysis model, then the input dataset could look like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th>Sentiments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This movie was nothing but a waste of my time and money, I’m done with this franchise.</td>
+      <td>Negative</td>
+    </tr>
+    <tr>
+      <td>The ultimate conclusion to a story five years in the making. I am speechless.</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <td>While the visuals and flashy fights were enough to get me through the movie, I just could not engage with the story.</td>
+      <td>Negative</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In a real-world application, you would want a lot more than just three reviews, but this should illustrate the type of data that is fed to models for fine-tuning.</p>
+
+<p><strong>(Code sample from either <sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">2</a></sup> or <sup id="fnref:13" role="doc-noteref"><a href="#fn:13" class="footnote" rel="footnote">3</a></sup> for fine tuning code)</strong></p>
+
+<p>From here, the model’s parameters are tweaked on the dataset, meaning that its understanding of movie review sentiment is being ingrained directly into the model. The key benefit of fine-tuning over In-Context Learning is that fine-tuning creates a more permanent integration of the new infromation into the LLM’s structure. Just like a person, LLMs “forget” what they learned after a session ends. Instead of having to feed an LLM the same prompt every time you want to have it learn how to do a specific task, you can finetune a model to permanently remember how to do said task.</p>
+
+<p><strong>(For specific code examples I am thinking of adapting the fine tuning example from the ACM talk. I was considering talking about RAG here, but have concerns about length. It would be easy to include if we want to go that path though.)</strong></p>
+
+<p><strong>(STILL NEED TO GIVE OVERVIEW OF HARDWARE RECS AND RESOURCES TO GET FINETUNING UP AND RUNNING)</strong></p>
+
+<p style="text-align:left;">
+    <a href="/Study-Site/how_llms_benefit_you_and_their_challenges.html">← How LLMs Benefit You and Their Challenges</a>
+    <span style="float:right;">
+        <a href="/Study-Site/making_llms_work_for_you.html">Making LLMs Work For You →</a>
+    </span>
+</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:11" role="doc-endnote">
+      <p>Dong, Qingxiu, et al. “A Survey on In-Context Learning.” arXiv.Org, 5 Oct. 2024, arxiv.org/abs/2301.00234. <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:11:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a> <a href="#fnref:11:2" class="reversefootnote" role="doc-backlink">&#8617;<sup>3</sup></a></p>
+    </li>
+    <li id="fn:12" role="doc-endnote">
+      <p>Banjara, Babina. “Fine-Tuning Large Language Models: A Comprehensive Guide.” Analytics Vidhya, 5 Feb. 2025, www.analyticsvidhya.com/blog/2023/08/fine-tuning-large-language-models/?utm_source=chatgpt.com. <a href="#fnref:12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:13" role="doc-endnote">
+      <p>February 12 ACM Talk: “Unlock Hugging Face: Simplify AI with Transformers, LLMs, RAG, Fine-Tuning” with Wei-Meng Lee <a href="#fnref:13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      
+      <footer class="inner">
+        
+        <p class="copyright">Study-Site maintained by <a href="https://github.com/XanderAP25">XanderAP25</a></p>
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

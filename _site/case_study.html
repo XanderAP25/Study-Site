@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="/Study-Site/assets/css/styles.css">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Home | A Study on LLMs</title>
+<title>Case Study | A Study on LLMs</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Home" />
+<meta property="og:title" content="Case Study" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/Study-Site/" />
-<meta property="og:url" content="http://localhost:4000/Study-Site/" />
+<link rel="canonical" href="http://localhost:4000/Study-Site/case_study.html" />
+<meta property="og:url" content="http://localhost:4000/Study-Site/case_study.html" />
 <meta property="og:site_name" content="A Study on LLMs" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
+<meta property="twitter:title" content="Case Study" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","headline":"Home","name":"A Study on LLMs","url":"http://localhost:4000/Study-Site/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"Case Study","url":"http://localhost:4000/Study-Site/case_study.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
@@ -75,7 +75,7 @@
       <li>
         <a href="/Study-Site/"
           
-           class="current" >
+          >
           Home
         </a>
       </li>
@@ -188,35 +188,23 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1 id="demystifying-ai-a-guide-to-llms">Demystifying AI: A Guide to LLMs</h1>
+        <h1 id="case-study">Case Study</h1>
 
-<p>Depending on who you are, and your interests, different things likely come to mind when you hear “AI”. Maybe you think of Skynet from <em>Terminator</em>, J.A.R.V.I.S from <em>Iron Man</em>, or Cortana from <em>Halo</em>. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Claude are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be incredibly useful. They can read papers for you, write stories and code, and are now seemingly able to reason through problems with the introduction of reasoning models. Impressive? Absolutely. But not magic.</p>
+<p>After my fact finding expedition, it was time to put my newfound knowledge to the test. Many of my readings touched on the capability of LLMs to generate poetry, and while I thought that was interesting, I am not much of a poetry guy. Instead, I wanted to see how an LLM performed in the generation of German Fairy Tales under three different constraints: a prompt telling an unmodified LLM to create a German Fairy Tale with no examples, a prompt telling it to create a German Fairy Tale with at least one story from <em>Grimm’s Fairy Tales</em> as an example, an LLM fine-tuned on <em>Grimm’s Fairy Tales</em> given the same prompt as the unmodified LLM. I picked German Fairy Tales as the topic of generation due to personal interest, but also because my pre-existing knowledge of the culture and their stories from my German minor would make the eventual text analysis easier.</p>
 
-<p>This website is a distillation of the dense of the scattered information that is out there on AI. Below, you will find links to the sections of an article that I wrote on the fundamentals of AI, covering how it works, and how you can make Large Language Models (LLMs) work for you. There are some accompanying case studies with code examples that will be referenced in the article, but they should also serve as standalone examples of how one could generate output with an LLM in a programming environment and how to fine-tune a model for your needs.</p>
+<p>The following set of headings all link to Google Colab notebooks that contain the code and my own insight into the fine-tuning of an LLM, the generation of stories and prompt engineering that went into it, and my eventual text analysis of the generated stories compared to each other and <em>Grimm’s Fairy Tales</em>. While these notebooks serve as a record of my own work and research, I hope that they can also help you along in your AI journey as code examples, or just sources of inspiration.</p>
 
-<p>This website was made with those unfamiliar with the inner workings of artificial intelligence and AI applications in mind. No complex math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you’re new to AI, the content on this website will give you a solid foundation to build upon.</p>
+<h2 id="finetuning-an-llm-on-german-fairy-tales"><a href="https://colab.research.google.com/drive/1ue50VMGv12nzZ6uQNxL6wITtvgJ0nX5V?usp=sharing" target="_blank">Finetuning an LLM on German Fairy Tales</a></h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Guide to LLMs Sections</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="/Study-Site/intro_to_ai_and_llms.html">Introduction to AI and LLMs</a></td>
-    </tr>
-    <tr>
-      <td><a href="/Study-Site/how_llms_benefit_you_and_their_challenges.html">How LLMs Benefit You and Their Challenges</a></td>
-    </tr>
-    <tr>
-      <td><a href="/Study-Site/training_and_fine_tuning_an_llm.html">Training and Fine-Tuning an LLM</a></td>
-    </tr>
-    <tr>
-      <td><a href="/Study-Site/making_llms_work_for_you.html">Making LLMs Work for You</a></td>
-    </tr>
-  </tbody>
-</table>
+<p>A notebook following the process of downloading an AI model from Hugging Face, obtaining a set of data, processing it into a usable format for fine-tuning, and finally carrying out the fine-tuning and saving the model to my computer.</p>
+
+<h2 id="story-generation-using-an-llm-in-a-notebook-environment"><a href="https://colab.research.google.com/drive/1goVTnNt6FauofB_BAQ2Db4h8uWFvfY1d" target="_blank">Story Generation Using an LLM in a Notebook Environment</a></h2>
+
+<p>A notebook containing the step-by-step process of loading a model from Hugging Face, or your own computer for story generation, and completing said task. It also contains notes on my methodology with the prompt creation</p>
+
+<h2 id="text-analysis-of-output-and-grimms"><a href="https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq" target="_blank">Text Analysis of Output and Grimms</a></h2>
+
+<p>A notebook walking through the analysis of the output of a pretrained LLM with a baseline prompt, ICL prompt, and a fine-tuned LLM compared with a corpus of Grimm’s Fairy Tales. The findings evaluate the models for how closely they get to true fairy tales.</p>
 
       </section>
     </div>

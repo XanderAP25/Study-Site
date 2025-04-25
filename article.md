@@ -4,11 +4,7 @@ title: Article
 ---
 # Demystifying AI: A Guide to LLMs
 
-Depending on who you are, and your interests, different things likely come to mind when you hear "AI". Maybe you think of Skynet from *Terminator*, J.A.R.V.I.S from *Iron Man*, or Cortana from *Halo*. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Claude are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be incredibly useful. They can read papers for you, write stories and code, and are now seemingly able to reason through problems with the introduction of reasoning models. Impressive? Absolutely. But not magic.
-
-In this tutorial you can not only come to understand how AI works, but how to make it work for you. It is with that purpose that this guide exists, to distill the dense and scattered information that is out there on AI into a more concise and easily digestible form.
-
-This article is intended for those unfamiliar with the inner workings of artificial intelligence and AI applications beyond chatbots like ChatGPT, Gemini, or Claude. No complex math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you're new to AI, this guide will give you a solid foundation.
+We are now at an awkward point where we have this article section, and I want the article to have its own section and place on the navbar, but I don't have anyway to introduce it differently because that has been done already on the home page.
 
 | Table of Contents |  
 | ----------- |  

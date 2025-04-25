@@ -17,16 +17,21 @@ navigation:
     url: /
   - title: About
     url: /about/
-  - title: Article
-    url: /article/
   - title: Stories
     url: /stories/
-  - title: Notebooks
-    url: /notebooks/
-  - title: Text Analysis Notebook
-    url: /text_analysis_notebook/
-  - title: Finetune Notebook
-    url: /notebook_notebook/
+  - title: Case Study
+    url: /case_study/
+  - title: A Guide to LLMs
+    url: "#"
+    sublinks:
+      - title: Introduction to AI and LLMs
+        url: /intro_to_ai_and_llms.html
+      - title: How LLMs Benefit You and Their Challenges
+        url: /how_llms_benefit_you_and_their_challenges.html
+      - title: Training and Fine-Tuning an LLM
+        url: /training_and_fine_tuning_an_llm.html
+      - title: Making LLMs Work for You
+        url: /making_llms_work_for_you.html
 sass:
   sass_dir: _sass
   style: compressed

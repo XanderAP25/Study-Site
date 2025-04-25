@@ -2,19 +2,17 @@
 layout: default
 title: Home
 ---
+# Demystifying AI: A Guide to LLMs
 
-# Welcome to my site!
+Depending on who you are, and your interests, different things likely come to mind when you hear "AI". Maybe you think of Skynet from *Terminator*, J.A.R.V.I.S from *Iron Man*, or Cortana from *Halo*. Or perhaps your mind jumps to AI assistants like Siri, Alexa, or Bixby, or the recommendation algorithms on Netflix and YouTube (less likely, but still possible). More generally, AI models like ChatGPT, Gemini, and Claude are probably going to be at the front of your mind. Like magic, these powerful tools were seemingly conjured from nothing and showed themselves to be incredibly useful. They can read papers for you, write stories and code, and are now seemingly able to reason through problems with the introduction of reasoning models. Impressive? Absolutely. But not magic.
 
-I am Alex Puskaric, a senior CIS student at Washington & Jefferson College, who is currently carrying out an Independent Study on AI, or more specifically, Large Language Models. This site is intended to serve as a hub for my findings, and any content that I produce as I go along with my study.
+This website is a distillation of the dense of the scattered information that is out there on AI. Below, you will find links to the sections of an article that I wrote on the fundamentals of AI, covering how it works, and how you can make Large Language Models (LLMs) work for you. There are some accompanying case studies with code examples that will be referenced in the article, but they should also serve as standalone examples of how one could generate output with an LLM in a programming environment and how to fine-tune a model for your needs.
 
-Below, you will find the initial pitch that set the foundation for this study.
+This website was made with those unfamiliar with the inner workings of artificial intelligence and AI applications in mind. No complex math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you're new to AI, the content on this website will give you a solid foundation to build upon.
 
-### The Proposal
-
-Artificial intelligence is a long existing field of computer science that has made great strides in recent years. This progress has led to the transformation of many industries, such as commerce, healthcare, and tech. Its expansion into people’s lives, and creative fields, has also led to widespread debate on the ethics of its use and the implications of its widespread adoption. As AI continues to evolve, it is evident that its influence will be felt in every corner of the world.
-
-As a topic of study for me personally, there are gaps in my existing knowledge that it can fill. My emphasis in Data Science has imparted onto me some machine learning principles, knowledge on building simulations, and statistical concepts. These are all well and good, but the gap that I seek to address with this study specifically, is generative AI and the more advanced applications of machine learning. Currently, a class does exist for AI already, but it is intended as an introduction, and will not reach the same heights or topics that are proposed in this document. This study will also allow me to apply and further my knowledge of the German language and culture, affording me a chance to carry out a cross-disciplinary study, and to make use of my CIS major and German minor. 
-
-Generative AI is specifically interesting to me due to the unique opportunities it has for analysis of the German language and culture via the output of the AI. An initial project for this study could take the form of applying the concepts of linguistics and artificial intelligence to create an English to German translator AI. An example of a larger project could involve taking Grimms’ Fairy Tales, a popular collection of Germanic fairy tales, and training a generative AI model on them. With this model, I could then generate new tales that are intended to follow similar themes and story structure to those found in the original set of fairy tales. Another possible route is taking these Germanic tales, which are known for their darker themes and tone, and generating new versions of them with different tones. The reverse could also theoretically be done, where the darker tone of Grimms’ Fairy Tales is imparted onto other, happier stories. There are many paths that I could follow for just this one project. 
-
-Aside from the fascinating outcomes of this study, the habits and lessons it can impart on me might be its most valuable aspect. In the computer science field, one’s education is not finished after you graduate. Technology is constantly evolving, and to remain competitive and competent, it is imperative to remain up to the date on the latest practices and trends. There will always be documentation and research papers that will be on my reading list. Having a study that will force me to not only read up on a topic that is almost completely new to me, but also find valid and competent material to bolster my studies will impart habits that I will carry with me going into my career all the way through to retirement. At the end of the day, what I learn in this study is liable to become outdated in just five years, but that drive and ability to teach myself highly advanced concepts will never age out of relevance. 
+| Guide to LLMs Sections |  
+| ----------- |  
+| [Introduction to AI and LLMs]({{ '/intro_to_ai_and_llms.html' | relative_url}}) |  
+| [How LLMs Benefit You and Their Challenges]({{ '/how_llms_benefit_you_and_their_challenges.html' | relative_url}}) |  
+| [Training and Fine-Tuning an LLM]({{ '/training_and_fine_tuning_an_llm.html' | relative_url}}) |  
+| [Making LLMs Work for You]({{ '/making_llms_work_for_you.html' | relative_url}}) |
