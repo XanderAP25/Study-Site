@@ -3,7 +3,7 @@ layout: default
 title: Training and Fine-Tuning an LLM
 ---
 
-## Training and Fine-Tuning an LLM
+## Section Three: Training and Fine-Tuning an LLM
 
 We briefly covered how models are trained in the first section, but let's recap. During training, models process massive sequences of text, analyzing how words relate to one another within a given context. By identifying these relationships, the model learns to predict and generate coherent text based on patterns in its training data. These pre-trained LLMs are what most people will be working with when setting up their own specialized LLM, largely due to the fact that not everyone has the ability to dedicate unfathomable amounts of energy towards the LLM of their dreams. This is where In-Context Learning and fine-tuning come into play.
 
@@ -34,9 +34,9 @@ From here, the model's parameters are tweaked on the dataset, meaning that its u
 **(STILL NEED TO GIVE OVERVIEW OF HARDWARE RECS AND RESOURCES TO GET FINETUNING UP AND RUNNING)**
 
 <p style="text-align:left;">
-    <a href="{{ '/how_llms_benefit_you_and_their_challenges.html' | relative_url }}">← How LLMs Benefit You and Their Challenges</a>
+    <a href="{{ '/how_llms_benefit_you_and_their_challenges.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">← How LLMs Benefit You and Their Challenges</a>
     <span style="float:right;">
-        <a href="{{ '/making_llms_work_for_you.html' | relative_url }}">Making LLMs Work For You →</a>
+        <a href="{{ '/making_llms_work_for_you.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">Making LLMs Work For You →</a>
     </span>
 </p>
 

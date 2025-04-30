@@ -44,7 +44,7 @@
     font-size: 1.1em;
     font-weight: bold;
     transition: color 0.3s;
-    padding: 10px
+    padding: 2px
 }
 
 .site-nav a:hover {
@@ -62,9 +62,9 @@
     display: none;
     position: absolute;
     background-color: #2a2e38;
-    min-width: 200px;
+    min-width: 150px;
     text-align: left;
-    padding: 10px 0;
+    padding: 5px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     z-index: 1000;
   }

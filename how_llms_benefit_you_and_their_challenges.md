@@ -3,7 +3,7 @@ layout: default
 title: How LLMs Benefit You and Their Challenges
 ---
 
-## How LLMs Benefit You and Their Challenges
+## Section Two: How LLMs Benefit You and Their Challenges
 
 At their core, LLMs process text and generate a relevant response. This is a simplified explanation of how LLMs function, but it should be clear what the potential that such a technology holds. Imagine having an assistant that can instantly summarize an article, or a peer to help brainstorm solutions to complex technical problems. What LLMs have to offer is nothing short of revolutionary, but they are not without their downsides. Like any computer program, LLMs require compute power, and lots of it. There are significant environmental concerns that we will look at later in the section that humanity must confront if we continue to use this technology. There are also many difficult ethical questions and concerns that must be addressed, or at the very least acknowledged, to not only inform your use of this technology, but to decide if AI is truly a net good.  
 
@@ -26,9 +26,9 @@ Access to LLMs is also not universal, many people, especially in lower-income re
 AI is a revolutionary technology that can massively improve your workflow, education, and potentially lead to the rapid creation of drugs for diseases that we have not found the cure to yet, but its development has relied on ethically questionable practices, from exploitative labor to environmental harm. Anyone using it extensively should reflect on whether they're comfortable with these trade-offs. It's an uncomfortable but necessary conversation—one that, by acknowledging AI's downsides, can push us toward a future where these issues are meaningfully addressed.
 
 <p style="text-align:left;">
-    <a href="{{ '/intro_to_ai_and_llms.html' | relative_url }}">← Introduction to AI and LLMs</a>
+    <a href="{{ '/intro_to_ai_and_llms.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">← Introduction to AI and LLMs</a>
     <span style="float:right;">
-        <a href="{{ '/training_and_fine_tuning_an_llm.html' | relative_url }}">Training and Fine-Tuning an LLM →</a>
+        <a href="{{ '/training_and_fine_tuning_an_llm.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">Training and Fine-Tuning an LLM →</a>
     </span>
 </p>
 

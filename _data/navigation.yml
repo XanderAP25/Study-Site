@@ -2,6 +2,7 @@
   link: "/"
 
 - name: A Guide to LLMs
+  link: "/article_landing.html"
   sublinks:
     - name: Introduction to AI and LLMs
       link: /intro_to_ai_and_llms.html
@@ -16,17 +17,24 @@
   link: "/case_study.html"
   sublinks:
     - name: Fine-Tuning a Model on Grimm's Fairy Tales
-      link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+      link: "https://colab.research.google.com/drive/1ue50VMGv12nzZ6uQNxL6wITtvgJ0nX5V?usp=sharing"
       target: "_blank"
     - name: Generating German Fairy Tales with an LLM
-      link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
+      link: "https://colab.research.google.com/drive/1goVTnNt6FauofB_BAQ2Db4h8uWFvfY1d?usp=sharing"
       target: "_blank"
     - name: Text Analysis of Output and Grimms
       link: "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq"
       target: "_blank"
 
-- name: Stories
-  link: "/stories.html"  
+- name: Appendix
+  link: "/appendix.html"
+  sublinks:
+    - name: About
+      link: "/about.html"
+    - name: Stories
+      link: "/stories.html"
+    - name: Works Cited
+      link: "/works_cited.html"
+    - name: Acknowledgements
+      link: "/Acknowledgements.html"
 
-- name: About
-  link: "/about.html"

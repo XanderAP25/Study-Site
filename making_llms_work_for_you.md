@@ -2,7 +2,7 @@
 layout: default
 title: Making LLMs Work For You
 ---
-## Making LLMs Work for You
+## Section Four: Making LLMs Work for You
 
 When it comes to making LLMs work for you, there are two methods of doing so. The first that we will cover is accessing LLMs via APIs.
 
@@ -23,7 +23,7 @@ To run these models, you would either need to drop a small fortune on a rig dedi
 **(There is a way to properly end this section, but as a first draft, I think this is a good spot to build from after critique)**
 
 <p style="text-align:left;">
-    <a href="{{ '/training_and_fine_tuning_an_llm.html' | relative_url }}">← Training and Fine-Tuning an LLM</a>
+    <a href="{{ '/training_and_fine_tuning_an_llm.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">← Training and Fine-Tuning an LLM</a>
 </p>
 
 [Footnotes go below here]: #
