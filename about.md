@@ -8,7 +8,7 @@ title: About
 <img src="assets/images/garfel and me.jpg" style="width:200px; height;200px; float:right; padding:10px">
 I’m Alex Puskaric, a Computing & Information Studies graduate from Washington & Jefferson College, who conducted an independent study on large language models. This site is the hub for my research, notebooks, and any content I created along the way.
 
-I also have minor in German and Mathematics; the German minor inspired the folklore case study you’ll find here. I was also a four year member of the college's track and field team, and am proud to say that I ended my track career as a slightly above average D3 runner.
+I also have minors in German and Mathematics; the German minor inspired the folklore case study you’ll find here. I was also a four year member of the college's track and field team, and am proud to say that I ended my track career as a slightly above average D3 runner.
 
 Outside of my studies and athletics, I enjoy playing video games and reading. I'm currently playing Metaphor: ReFantazio, and have just finished reading a medieval horror novel called *Between Two Fires*. 
 

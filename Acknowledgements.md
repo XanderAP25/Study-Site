@@ -5,7 +5,7 @@ title: Acknowledgements
 
 ## Acknowledgements
 
-This study would not have been possible without the support of the **CIS Department** at *Washington & Jefferson College*, who provided both the opportunity and the skills necessary to carry it out. In particular, I would like to extend my deepest thanks to **Dr. Ladd** and **Dr. Holland-Minkley** for their invaluable guidance throughout all stages of this project.
+This study would not have been possible without the support of the wonderful **CIS Department** at *Washington & Jefferson College*, who provided both the opportunity and the skills necessary to carry it out. In particular, I would like to extend my deepest thanks to **Dr. Ladd** and **Dr. Holland-Minkley** for their guidance throughout all stages of this project.
 
 Dr. Ladd served as my project advisor and offered constant mentorship and support throughout the semester. He undertook the arduous task of reviewing and critiquing the very first (and very rough) draft of the *Guide to LLMs*. There are truly not enough words to express how helpful and encouraging he was at every stage of this project.
 
