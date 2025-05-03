@@ -45,7 +45,7 @@ This is enabled by the encoding of the words in the input sequence into a numeri
 The Transformer model powers modern AI and enables many of the incredible applications we see today. AI is used to translate languages, analyze vast amounts of information to generate summaries, recognize and classify images, create realistic images and videos, and much more. One of the most well-known applications of AI is text generation, where models process a prompt and generate a relevant response. These models, known as Large Language Models (LLMs), specialize in understanding and producing human-like text.  Some of the applications mentioned earlier, like text summarization and language translation also fall under this label. For the rest of this article, we will focus on LLMs, exploring how they work, their benefits, and how you can use them effectively.
 
 <p style="text-align:right;">
-    <a href="{{ '/how_llms_benefit_you_and_their_challenges.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">How LLMs Benefit You and Their Challenges →</a>
+    <a href="{{ '/how_llms_can_benefit_you_and_their_challenges.html' | relative_url }}" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">How LLMs Can Benefit You and Their Challenges →</a>
 </p>
 
 [Footnotes go below here]: #
