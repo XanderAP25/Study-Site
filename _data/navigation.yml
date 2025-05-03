@@ -39,4 +39,5 @@
       link: "/reading_list.html"
     - name: Acknowledgements
       link: "/Acknowledgements.html"
-
+    - name: Contact Information
+      link: "/contact_information.html"
