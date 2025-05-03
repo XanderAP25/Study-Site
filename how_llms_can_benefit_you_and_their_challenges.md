@@ -1,9 +1,9 @@
 ---
 layout: default
-title: How LLMs Benefit You and Their Challenges
+title: How LLMs Can Benefit You and Their Challenges
 ---
 
-## Section Two: How LLMs Benefit You and Their Challenges
+## Section Two: How LLMs Can Benefit You and Their Challenges
 
 At their core, LLMs process text and generate a relevant response. This is a simplified explanation of how LLMs function, but it should be clear what the potential that such a technology holds. Imagine having an assistant that can instantly summarize an article, or a peer to help brainstorm solutions to complex technical problems. What LLMs have to offer is nothing short of revolutionary, but they are not without their downsides. Like any computer program, LLMs require compute power, and lots of it. There are significant environmental concerns that we will look at later in the section that humanity must confront if we continue to use this technology. There are also many difficult ethical questions and concerns that must be addressed, or at the very least acknowledged, to not only inform your use of this technology, but to decide if AI is truly a net good.  
 

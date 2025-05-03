@@ -97,10 +97,18 @@
             </li>
           
             <li>
-              <a href="/Study-Site/how_llms_benefit_you_and_their_challenges.html"
+              <a href="/Study-Site/how_llms_can_benefit_you_and_their_challenges.html"
                 
                 >
-                How LLMs Benefit You and Their Challenges
+                How LLMs Can Benefit You and Their Challenges
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Study-Site/making_llms_work_for_you.html"
+                
+                 class="current" >
+                Making LLMs Work for You
               </a>
             </li>
           
@@ -113,10 +121,10 @@
             </li>
           
             <li>
-              <a href="/Study-Site/making_llms_work_for_you.html"
+              <a href="/Study-Site/conclusion.html"
                 
-                 class="current" >
-                Making LLMs Work for You
+                >
+                Conclusion
               </a>
             </li>
           
@@ -211,34 +219,47 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2 id="section-four-making-llms-work-for-you">Section Four: Making LLMs Work for You</h2>
+        <h2 id="section-three-making-llms-work-for-you">Section Three: Making LLMs Work for You</h2>
 
-<p>When it comes to making LLMs work for you, there are two methods of doing so. The first that we will cover is accessing LLMs via APIs.</p>
+<p>When it comes to making LLMs work for you, there are two main methods. The first we will cover is accessing LLMs via APIs.</p>
 
-<p>An LLM API lets you connect your computer directly to ultra powerful AI models, like GPT-4 and Llama 2, without actually having to download and run the model on your computer. What this means for you is that you can have the most mediocre hardware on the planet, but as long as you have a wifi connection and the ability to pay the fee to access the model, you have an LLM that you can use and modify to your heart’s content. The fee to use these APIs is often not a monthly subscription, but instead a fee per million tokens processed as input and output. For reference, one token is about 4 characters, or about three-fourths of a word. This fee depends on what model you’re paying to access, but can be anywhere from \$30 per million tokens processed as output for OpenAI’s GPT-4 Turbo model to \$2.00 per million tokens processed as output for their smaller GPT-3.5 Turbo model. Prices vary depending on what company’s model you use, but there will typically be a price associated with using this larger models.</p>
+<p>An LLM API lets you connect your computer directly to ultra-powerful AI models, like GPT-4 and Llama 2, without having to download and run the model on your own machine. What this means for you is that regardless of your hardware, as long as you have a Wi-Fi connection and the ability to pay the fee to access the model, you have an LLM that you can use and modify to your heart’s content. The fee to use these APIs is often not a monthly subscription, but instead a fee per million tokens processed as input and output. This practice has become the standard across most AI companies, but there are cases of some AIs, like Mistral, offering monthly subscriptions. For reference, one token is about four characters, or about three-fourths of a word. This fee depends on what model you’re paying to access but can range from \$30 per million tokens processed as output for OpenAI’s GPT-4 Turbo model to \$2.00 per million tokens processed as output for their smaller GPT-3.5 Turbo model. Prices vary depending on which company’s model you use, but there will typically be a price associated with using these larger models.</p>
 
-<p>The cost to use these models presents some concerns when you’re just starting out with using LLMs. For example, what constitutes a heavy workload for these models? You could be getting acquainted with your shiny new LLM and suddenly find yourself forking over way more cash than you initially intended because you didn’t realize that the multi-hour long conversation or learning session you had with your model required millions of input and output tokens to be processed. There are also privacy concerns associated with using LLM APIs, since they typically store your prompts and outputs to improve their own technology. This data is also used to enforce the company’s TOS, prevent illegal activity using their technology, and in specific circumstances can be shared with other parties <sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">1</a></sup>. Those circumstances include: at the request of government authorities, to certain service providers and vendors when business needs must be met, and during the diligence process with those assisting in a business transfer<sup id="fnref:14:1" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">1</a></sup>. Since user data is retained, that also opens you up to the possibility of your data being included in a data leak if the company that provides your LLM gets hacked.</p>
+<p>The cost to use these models presents some concerns when you’re just starting out using LLMs. For example, what constitutes a heavy workload for these models? You could be getting acquainted with your shiny new LLM and suddenly find yourself paying way more than you initially intended because you didn’t realize that the multi-hour-long conversation or learning session you had with your model required millions of input and output tokens to be processed. There are also privacy concerns associated with using LLM APIs, since they typically store your prompts and outputs to improve their own technology. This data is also used to enforce the company’s TOS, prevent illegal activity using their technology, and, in specific circumstances, can be shared with other parties (<sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">1</a></sup>). Those circumstances include: at the request of government authorities, to certain service providers and vendors when business needs must be met, and during the diligence process with those assisting in a business transfer (<sup id="fnref:14:1" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">1</a></sup>). Since user data is retained, that also opens you up to the possibility of your data being included in a data leak if the company that provides your LLM gets hacked.</p>
 
 <p>Despite these concerns, LLM APIs are typically at the cutting edge of AI technology. So, if you’re looking for the most powerful model for a specific application, using an API might be the right choice.</p>
 
-<p>As mentioned earlier, another option is downloading and running an LLM directly on your own computer. Running LLMs locally gives you more control over your data, as it is stored entirely on your device and never shared with the model’s creator. There are also no fees for running a local LLM. While this might sound like the ideal option, there are several caveats to consider. For one, these models require fairly powerful hardware to run efficiently. Although there is no fee to use a local LLM, you will likely need to invest in a powerful PC to get the most out of the technology. Smaller models can be run on more modest hardware, such as a relatively modern laptop, but you’ll likely experience slower output and lower quality compared to running top-tier models on a high-performance PC with a strong NVIDIA GPU. (Touch on electricity use and the likelihood of it raising your electricity bill).</p>
+<p>If relying on an external API doesn’t suit your needs or priorities, an alternative approach is to run an LLM directly on your own computer. Running LLMs locally gives you more control over your data, as it is stored entirely on your device and never shared with the model’s creator. There are also no fees for running a local LLM, outside of a possible increase in your electricity bill if you are running your LLMs for extended periods of time. While this might sound like the ideal option, there are several caveats to consider. For one, these models require fairly powerful hardware to run efficiently. Although there is no fee to use a local LLM, you will likely need to invest in a powerful PC to get the most out of the technology. Smaller models can be run on more modest hardware, such as a relatively modern laptop, but you’ll likely experience slower output and lower quality compared to running top-tier models on a high-performance PC with a strong NVIDIA GPU. There are also smaller quantized versions of larger LLMs that offer high quality output, while being able to run on less powerful hardware (<sup id="fnref:19" role="doc-noteref"><a href="#fn:19" class="footnote" rel="footnote">2</a></sup>).</p>
 
-<p><strong>(I should also touch on GPT4ALL and LM Studio here, hugging face API free tier)</strong></p>
+<p>To get an LLM up and running on your own machine, you will need a platform to run them on. One of the most popular platforms for this purpose is <a href="https://ollama.com">Ollama</a>, an open-source tool that allows you to run AI models that you have downloaded through a terminal. Setup is fairly straightforward, just download the application from the website and follow the steps it gives you to get up and running. The Ollama website also hosts models for you to use immediately, but you can also run community models from Hugging Face, or custom models of your own design, if there is a specific LLM that is more suited to your needs. Other than Ollama, <a href="https://lmstudio.ai">LM Studio</a> is a similar application that provides a graphical interface to interact with your AI models through instead of a terminal like Ollama. There are also web-based frontends for Ollama that you can get up and running, but they require some technical knowledge that I will not be covering here (<sup id="fnref:20" role="doc-noteref"><a href="#fn:20" class="footnote" rel="footnote">3</a></sup>).</p>
 
-<p>To get an LLM up and running on your own machine, you will need a platform to run them on. One of the most popular platforms for this purpose is <a href="https://ollama.com">Ollama</a>, an open-source tool that allows you to run AI models that you have downloaded through a terminal. Setup is fairly straightforward, just download the application from the website, and follow the steps it gives you to get up and running. The Ollama website also hosts models for you to get up and running, but you can also run models from Hugging Face if there is something there that is more suited to your needs (i just realized that I have not talked about hugging face at all in this entire article). These models are measured by how many parameters they have, and they are formatted like “8B” meaning 8-billion parameters in this case. For weaker computers, like laptops, you will want to use models that are at most 8B. Depending on how powerful your laptop is, you could go higher than that, especially if it has a dedicated NVIDIA GPU. For PCs, you can go higher than this, but will still find a limit around the 30B parameter mark. Despite that being the limit, there are models available for download with upwards of 70B parameters, going into the 600-billions.</p>
+<p>Another popular option for running local models is <a href="https://www.nomic.ai/gpt4all">GPT4All</a>. It stands out for its user-friendliness, offering a clean, ChatGPT-like interface. Unlike platforms like Ollama, which rely on terminal commands, GPT4All is more plug-and-play. Once installed, it allows you to easily browse and download models directly within the application itself, requiring no additional repositories or command-line interactions. GPT4All also kindly lists the RAM requirements for its models, which is incredibly helpful when deciding what model you want to use.</p>
 
-<p>To run these models, you would either need to drop a small fortune on a rig dedicated to running massive AI models, or purchase access to a cloud computing service, and use their hardware instead. In a way, this is the middleground between running an LLM on your own computer and using an API to access a company’s AI model. You have some of the benefits of running an LLM on your machine, like keeping your data private and the ability to pick and choose specific models you want to use on the fly. And some benefits from LLM APIs, like gaining access to an extremely powerful LLM while not needing a powerful computer. You do have to pay to use these cloud services, but these rates are hourly, instead of usage-based, which could be good or bad depending on what you’re doing with your LLM.</p>
+<p>AI models are measured by how many parameters they have, and they are formatted like “8B,” meaning 8 billion parameters in this case. For every day computers, like laptops, you will want to use models that are at most 8B. Depending on how powerful your laptop is, you could go higher than that, especially if it has a dedicated NVIDIA GPU. For desktop PCs with powerful GPUs, you can go higher than this but will still find a limit around the 30B parameter mark. Despite that, there are models available for download with upwards of 70B parameters, going into the hundreds of billions parameters.</p>
 
-<p><strong>(There is a way to properly end this section, but as a first draft, I think this is a good spot to build from after critique)</strong></p>
+<p>To run those massive models, you would either need to drop a small fortune on a rig dedicated to running massive AI models or purchase access to a cloud computing service and use their hardware instead. In a way, this is the middle ground between running an LLM on your own computer and using an API to access a company’s AI model. You have some of the benefits of running an LLM on your machine, like keeping your data private and the ability to pick and choose specific models you want to use on the fly. And some benefits from LLM APIs, like gaining access to an extremely powerful LLM while not needing a powerful computer. You do have to pay to use these cloud services, but these rates are hourly instead of usage-based, which could be good or bad depending on what you’re doing with your LLM.</p>
+
+<p>In my case, where I wanted to not only generate stories, but also fine-tune a model (which we will get into in the next section), I opted to purchase compute units from Google to use with their Google Colab notebook environment. I was granted access to an incredibly powerful GPU that allowed me to generate stories at a far faster rate than I would be able to on my local machine, while also allowing easy sharing of my code due to it being online. For most introductory AI applications, I would recommend using Google Colab, since there is a free tier that would allow you to experiment with more powerful models than you might be able to on your machine.</p>
+
+<p>Ultimately, the choice of interface and machine when using an LLM will be based on your own needs and preferences. If you just want a private chatbot that lacks the usage limits that ChatGPT and the other free tiers of popular AI models have, then Ollama, LM Studio, or GPT4All are likely going to be all you need, assuming you have a machine capable of running smaller or quanitzed models. If you are looking into tuning or training your own LLM or using a top of the line LLM with no compromises, then an API or cloud-computing solution will be more up your alley. Just do your due diligence in finding an API or solution that works for you and fits into your workflow.</p>
 
 <p style="text-align:left;">
-    <a href="/Study-Site/training_and_fine_tuning_an_llm.html" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">← Training and Fine-Tuning an LLM</a>
+    <a href="/Study-Site/how_llms_can_benefit_you_and_their_challenges.html" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">← How LLMs Can Benefit You and Their Challenges</a>
+    <span style="float:right;">
+        <a href="/Study-Site/training_and_fine_tuning_an_llm.html" style="padding: 0.4em 0.8em; border: 1px solid #1e6bb8; color: #1e6bb8; text-decoration: none; border-radius: 3px; font-weight: bold;">Training and Fine-Tuning an LLM →</a>
+    </span>
 </p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:14" role="doc-endnote">
       <p>https://openai.com/policies/row-privacy-policy/ <a href="#fnref:14" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:14:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:19" role="doc-endnote">
+      <p>Quantized models have their weights reduced in size from (typically) 32-bit floats to 8-bit integers. This significantly reduces their size and computational overhead while making them less precise in their outputs, meaning that they will have somewhat lower quality generated text. These models still benefit from large training sets and expert optimization, however. For further reading, see Hugging Face’s documentation on quantization: https://huggingface.co/docs/optimum/en/concept_guides/quantization <a href="#fnref:19" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:20" role="doc-endnote">
+      <p>Any web-based frontend for Ollama will require <a href="https://docs.docker.com/get-started/">Docker</a>  to be installed onto your machine. I recommend having some knowledge of Docker if you’re at all interested in software development, so this could be a good introduction to that tool. This front-end is a popular choice for users of Ollama: https://github.com/open-webui/open-webui <a href="#fnref:20" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

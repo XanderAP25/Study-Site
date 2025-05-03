@@ -11,8 +11,10 @@ This website is a distillation of the dense of the scattered information that is
 | Guide to LLMs Sections |  
 | ----------- |  
 | [1. Introduction to AI and LLMs]({{ '/intro_to_ai_and_llms.html' | relative_url}}) |  
-| [2. How LLMs Benefit You and Their Challenges]({{ '/how_llms_benefit_you_and_their_challenges.html' | relative_url}}) |  
-| [3. Training and Fine-Tuning an LLM]({{ '/training_and_fine_tuning_an_llm.html' | relative_url}}) |  
-| [4. Making LLMs Work for You]({{ '/making_llms_work_for_you.html' | relative_url}}) |
+| [2. How LLMs Can Benefit You and Their Challenges]({{ '/how_llms_can_benefit_you_and_their_challenges.html' | relative_url}}) |  
+| [3. Making LLMs Work for You]({{ '/making_llms_work_for_you.html' | relative_url}}) |
+| [4. Training and Fine-Tuning an LLM]({{ '/training_and_fine_tuning_an_llm.html' | relative_url}}) |  
+| [5. Conclusion]({{ '/Conclusion.html' | relative_url}}) |  
+
 
 This website was made with those unfamiliar with the inner workings of artificial intelligence and AI applications in mind. No complex math or programming knowledge is required, but a basic familiarity with coding concepts will help. Even if you're new to AI, the content on this website will give you a solid foundation to build upon.

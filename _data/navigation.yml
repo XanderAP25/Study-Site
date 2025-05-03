@@ -6,12 +6,14 @@
   sublinks:
     - name: Introduction to AI and LLMs
       link: /intro_to_ai_and_llms.html
-    - name: How LLMs Benefit You and Their Challenges
-      link: /how_llms_benefit_you_and_their_challenges.html
-    - name: Training and Fine-Tuning an LLM
-      link: /training_and_fine_tuning_an_llm.html
+    - name: How LLMs Can Benefit You and Their Challenges
+      link: /how_llms_can_benefit_you_and_their_challenges.html
     - name: Making LLMs Work for You
       link: /making_llms_work_for_you.html
+    - name: Training and Fine-Tuning an LLM
+      link: /training_and_fine_tuning_an_llm.html
+    - name: Conclusion
+      link: /conclusion.html
 
 - name: Case Study
   link: "/case_study.html"

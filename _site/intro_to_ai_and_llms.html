@@ -97,10 +97,18 @@
             </li>
           
             <li>
-              <a href="/Study-Site/how_llms_benefit_you_and_their_challenges.html"
+              <a href="/Study-Site/how_llms_can_benefit_you_and_their_challenges.html"
                 
                 >
-                How LLMs Benefit You and Their Challenges
+                How LLMs Can Benefit You and Their Challenges
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Study-Site/making_llms_work_for_you.html"
+                
+                >
+                Making LLMs Work for You
               </a>
             </li>
           
@@ -113,10 +121,10 @@
             </li>
           
             <li>
-              <a href="/Study-Site/making_llms_work_for_you.html"
+              <a href="/Study-Site/conclusion.html"
                 
                 >
-                Making LLMs Work for You
+                Conclusion
               </a>
             </li>
           
@@ -230,7 +238,7 @@
 
 <p>Before we can get into the Transformer architecture, it’s worth understanding why it replaced RNN. In a standard neural network, information flows in one direction, from input to output, with no memory of previous inputs. This becomes a major obstacle when dealing with sequential data like text, where context is key. RNNs addressed this by introducing loops that allowed the network to maintain a form of memory, but they struggled with long-term dependencies. For example, when processing the sentence:</p>
 
-<p><strong>“I love Rad Cat for his academic due dilligence and intellect.”</strong></p>
+<p><strong>“I love Rad Cat for his academic due diligence and intellect.”</strong></p>
 
 <p>The RNN takes each word as input, one at a time, and treats it as largely independent from the words that came before. When it starts with “I,” it has no memory of what’s coming next. If the task were to predict the next word, the network would have to make a guess based solely on “I,” without any understanding of the sentence’s broader context. This is a difficult task even for a human, let alone a machine. To handle this, RNNs introduce a loop in their architecture that allows each output to be fed back in as an input, enabling the model to retain information about earlier words as it moves through the sequence. This gives the network a rudimentary memory, so by the time it reaches “intellect,” it can recall the presence of “academic” earlier in the sentence and use that relationship to inform its output.</p>
 
@@ -242,7 +250,7 @@
 
 <p><span style="font-family:Arial; font-size:xx-small; ">Illustration of the Transformer architecture (<sup id="fnref:3:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>).</span></p>
 
-<p>Self-attention is a mechanism that allows a model to look at every word in a sequence at the same time and decide how much attention it should pay to each word in relation to the others (<sup id="fnref:3:4" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>). This is incredibly helpful when reading sentences because the model can find relationships between words, even if they are far apart. For example, let’s look at “I love Rad Cat for his academic due dilligence and intellect” again. A self-attention mechanism will process the entire sequence and assign a weight to every pair of words. The mechanism can see that “rad” has a stronger connection to “cat” over “love,” so the weight will be greater and prioritized when making predictions.</p>
+<p>Self-attention is a mechanism that allows a model to look at every word in a sequence at the same time and decide how much attention it should pay to each word in relation to the others (<sup id="fnref:3:4" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>). This is incredibly helpful when reading sentences because the model can find relationships between words, even if they are far apart. For example, let’s look at “I love Rad Cat for his academic due diligence and intellect” again. A self-attention mechanism will process the entire sequence and assign a weight to every pair of words. The mechanism can see that “rad” has a stronger connection to “cat” over “love,” so the weight will be greater and prioritized when making predictions.</p>
 
 <p>At first glance, this might sound similar to how RNNs process sequences. The key difference is the ability for the self-attention mechanism to consider all words of a sequence at once as opposed to sequentially reading through it. This removes the performance bottleneck of processing words one by one, and also addresses the memory limitations of RNNs that cause them to forget relationships between words separated over a long distance.</p>
 

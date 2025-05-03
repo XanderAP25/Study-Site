@@ -22,7 +22,7 @@ There are many types of neural networks, each developed to tackle increasingly c
 
 Before we can get into the Transformer architecture, it's worth understanding why it replaced RNN. In a standard neural network, information flows in one direction, from input to output, with no memory of previous inputs. This becomes a major obstacle when dealing with sequential data like text, where context is key. RNNs addressed this by introducing loops that allowed the network to maintain a form of memory, but they struggled with long-term dependencies. For example, when processing the sentence:
 
-**"I love Rad Cat for his academic due dilligence and intellect."**
+**"I love Rad Cat for his academic due diligence and intellect."**
 
 The RNN takes each word as input, one at a time, and treats it as largely independent from the words that came before. When it starts with "I," it has no memory of what’s coming next. If the task were to predict the next word, the network would have to make a guess based solely on "I," without any understanding of the sentence’s broader context. This is a difficult task even for a human, let alone a machine. To handle this, RNNs introduce a loop in their architecture that allows each output to be fed back in as an input, enabling the model to retain information about earlier words as it moves through the sequence. This gives the network a rudimentary memory, so by the time it reaches "intellect," it can recall the presence of "academic" earlier in the sentence and use that relationship to inform its output.
 
@@ -34,7 +34,7 @@ The solution to this problem was an entirely new architecture for processing inf
 
 <span style="font-family:Arial; font-size:xx-small; ">Illustration of the Transformer architecture ([^3]).</span>
 
-Self-attention is a mechanism that allows a model to look at every word in a sequence at the same time and decide how much attention it should pay to each word in relation to the others ([^3]). This is incredibly helpful when reading sentences because the model can find relationships between words, even if they are far apart. For example, let's look at "I love Rad Cat for his academic due dilligence and intellect" again. A self-attention mechanism will process the entire sequence and assign a weight to every pair of words. The mechanism can see that "rad" has a stronger connection to "cat" over "love," so the weight will be greater and prioritized when making predictions.
+Self-attention is a mechanism that allows a model to look at every word in a sequence at the same time and decide how much attention it should pay to each word in relation to the others ([^3]). This is incredibly helpful when reading sentences because the model can find relationships between words, even if they are far apart. For example, let's look at "I love Rad Cat for his academic due diligence and intellect" again. A self-attention mechanism will process the entire sequence and assign a weight to every pair of words. The mechanism can see that "rad" has a stronger connection to "cat" over "love," so the weight will be greater and prioritized when making predictions.
 
 At first glance, this might sound similar to how RNNs process sequences. The key difference is the ability for the self-attention mechanism to consider all words of a sequence at once as opposed to sequentially reading through it. This removes the performance bottleneck of processing words one by one, and also addresses the memory limitations of RNNs that cause them to forget relationships between words separated over a long distance. 
 
@@ -77,3 +77,15 @@ The Transformer model powers modern AI and enables many of the incredible applic
 [^13]: February 12 ACM Talk: "Unlock Hugging Face: Simplify AI with Transformers, LLMs, RAG, Fine-Tuning" with Wei-Meng Lee
 
 [^14]: https://openai.com/policies/row-privacy-policy/
+
+[^15]: <a href = "https://colab.research.google.com/drive/1goVTnNt6FauofB_BAQ2Db4h8uWFvfY1d" target="_blank">Story Generation Using an LLM in a Notebook Environment</a>
+
+[^16]: <a href="https://colab.research.google.com/drive/1ue50VMGv12nzZ6uQNxL6wITtvgJ0nX5V?usp=sharing" target="_blank">Finetuning an LLM on German Fairy Tales</a>
+
+[^17]: <a href = "https://colab.research.google.com/drive/1_q8NFdDmb1_QonBbXd9wk84RiPA8ei8l?usp=sharing#scrollTo=BMzdSSBlq8dq" target="_blank">Text Analysis of Output and Grimms</a>
+
+[^18]: LLMs use tons of VRAM, and require powerful GPUs to be used to their fullest extent. Whether that be output generation, or fine-tuning, you want to have a lot of VRAM at your disposal. You can get away with using CPUs or Apple Silicon in conjunction with your system RAM for running and fine-tuning smaller LLMs, but you will see noticeably less performance and efficiency. Google Colab is a relatively cheap resource to rent powerful GPUs that you can easily use for your AI ambitions. You can even use a free T4 GPU, which offers more power than what the layman would likely have on hand. A good rule of thumb is that you want at least 16 GB of VRAM to do anything significant with moderate sized LLMs (1-3B parameters), and you may want 80GB+ of VRAM if you're fine-tuning larger models.
+
+[^19]: Quantized models have their weights reduced in size from (typically) 32-bit floats to 8-bit integers. This significantly reduces their size and computational overhead while making them less precise in their outputs, meaning that they will have somewhat lower quality generated text. These models still benefit from large training sets and expert optimization, however. For further reading, see Hugging Face’s documentation on quantization: https://huggingface.co/docs/optimum/en/concept_guides/quantization
+
+[^20]: Any web-based frontend for Ollama will require [Docker](https://docs.docker.com/get-started/)  to be installed onto your machine. I recommend having some knowledge of Docker if you're at all interested in software development, so this could be a good introduction to that tool. This front-end is a popular choice for users of Ollama: https://github.com/open-webui/open-webui
